@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 06, 2016 at 02:47 PM
+-- Generation Time: May 06, 2016 at 02:58 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.3
 
@@ -85,8 +85,8 @@ CREATE TABLE IF NOT EXISTS `requests` (
   `id_req` int(11) NOT NULL,
   `message` varchar(255) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `id_sub` int(11) NOT NULL,
-  `id_cours` int(11) NOT NULL
+  `id_sub` int(11) DEFAULT NULL,
+  `id_cours` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
