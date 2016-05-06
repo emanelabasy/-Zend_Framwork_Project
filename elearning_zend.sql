@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 06, 2016 at 02:58 PM
+-- Generation Time: May 06, 2016 at 03:23 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.3
 
@@ -61,11 +61,11 @@ CREATE TABLE IF NOT EXISTS `comments` (
 CREATE TABLE IF NOT EXISTS `courses` (
   `id_cours` int(11) NOT NULL,
   `id_type` int(11) NOT NULL,
-  `cours_pdf` varchar(255) NOT NULL,
-  `cours_image` varchar(255) NOT NULL,
-  `cours_word` varchar(255) NOT NULL,
-  `cours_video` varchar(255) NOT NULL,
-  `cours_ppt` varchar(255) NOT NULL,
+  `cours_pdf` varchar(255) DEFAULT NULL,
+  `cours_image` varchar(255) DEFAULT NULL,
+  `cours_word` varchar(255) DEFAULT NULL,
+  `cours_video` varchar(255) DEFAULT NULL,
+  `cours_ppt` varchar(255) DEFAULT NULL,
   `state` int(11) NOT NULL,
   `lock` int(11) NOT NULL,
   `no_users` int(100) NOT NULL,
