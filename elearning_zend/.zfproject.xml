@@ -24,6 +24,7 @@
         <modelFile modelName="Courses"/>
         <modelFile modelName="Categories"/>
         <modelFile modelName="Subcategories"/>
+        <modelFile modelName="Requests"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>

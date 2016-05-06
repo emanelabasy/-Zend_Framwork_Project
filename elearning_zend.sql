@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 06, 2016 at 01:23 PM
+-- Generation Time: May 06, 2016 at 02:47 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.3
 
@@ -78,6 +78,20 @@ CREATE TABLE IF NOT EXISTS `courses` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `requests`
+--
+
+CREATE TABLE IF NOT EXISTS `requests` (
+  `id_req` int(11) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_sub` int(11) NOT NULL,
+  `id_cours` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subcategories`
 --
 
@@ -85,7 +99,6 @@ CREATE TABLE IF NOT EXISTS `subcategories` (
   `id_sub` int(11) NOT NULL,
   `sub_category` varchar(255) NOT NULL,
   `id_cato` int(11) NOT NULL,
-  `sub_request` varchar(255) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -111,7 +124,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(100) NOT NULL,
   `password` char(32) NOT NULL,
   `type` int(11) NOT NULL,
-  `request` varchar(255) NOT NULL,
   `ban_user` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `gender` varchar(100) NOT NULL,
@@ -123,9 +135,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `email`, `password`, `type`, `request`, `ban_user`, `image`, `gender`, `country`, `signature`) VALUES
-(2, 'teste', 'teste', 1, 'teste', 0, '', '', '', ''),
-(6, 'mmm', '66vdvd', 1, 'vksdvkjds', 0, 'vsdjkv', 'hdj', 'hvdbjv', '');
+INSERT INTO `users` (`id_user`, `email`, `password`, `type`, `ban_user`, `image`, `gender`, `country`, `signature`) VALUES
+(2, 'teste', 'teste', 1, 0, '', '', '', ''),
+(6, 'mmm', '66vdvd', 1, 0, 'vsdjkv', 'hdj', 'hvdbjv', '');
 
 --
 -- Indexes for dumped tables
@@ -155,6 +167,13 @@ ALTER TABLE `courses`
   ADD KEY `id_user_3` (`id_user`),
   ADD KEY `id_sub` (`id_sub`),
   ADD KEY `id_type` (`id_type`);
+
+--
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`id_req`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `subcategories`
@@ -196,6 +215,11 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `courses`
   MODIFY `id_cours` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
+  MODIFY `id_req` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `subcategories`
 --

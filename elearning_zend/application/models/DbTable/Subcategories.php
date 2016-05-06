@@ -31,8 +31,7 @@ class Application_Model_DbTable_Subcategories extends Zend_Db_Table_Abstract
 		$row = $this->createRow();
 		$row->sub_category = $subInfo['sub_category'];
 		$row->id_cato = $subInfo['id_cato'];
-		$row->sub_request = $coursInfo['sub_request'];
-		$row->id_user = $coursInfo['id_user'];
+		$row->id_user = $subInfo['id_user'];
 
 		return $row->save();
 	}

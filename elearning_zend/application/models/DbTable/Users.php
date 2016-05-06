@@ -30,7 +30,6 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 		$row->email = $userInfo['email'];
 		// md5 this way for hash password in database
 		$row->password = md5($userInfo['password']);
-		$row->request=$userInfo['request'];
 		$row->ban_user=$userInfo['ban_user'];
 		$row->type=$userInfo['type'];
 		$row->image=$userInfo['image'];
