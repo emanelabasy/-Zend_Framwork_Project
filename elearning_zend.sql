@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 05, 2016 at 08:09 PM
+-- Generation Time: May 06, 2016 at 01:23 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.3
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 CREATE TABLE IF NOT EXISTS `courses` (
   `id_cours` int(11) NOT NULL,
-  `cours_name` varchar(200) NOT NULL,
+  `id_type` int(11) NOT NULL,
   `cours_pdf` varchar(255) NOT NULL,
   `cours_image` varchar(255) NOT NULL,
   `cours_word` varchar(255) NOT NULL,
@@ -84,7 +84,20 @@ CREATE TABLE IF NOT EXISTS `courses` (
 CREATE TABLE IF NOT EXISTS `subcategories` (
   `id_sub` int(11) NOT NULL,
   `sub_category` varchar(255) NOT NULL,
-  `id_cato` int(11) NOT NULL
+  `id_cato` int(11) NOT NULL,
+  `sub_request` varchar(255) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `typecourses`
+--
+
+CREATE TABLE IF NOT EXISTS `typecourses` (
+  `id_type` int(11) NOT NULL,
+  `contain_type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -102,16 +115,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `ban_user` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `gender` varchar(100) NOT NULL,
-  `country` varchar(255) NOT NULL
+  `country` varchar(255) NOT NULL,
+  `signature` varchar(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `email`, `password`, `type`, `request`, `ban_user`, `image`, `gender`, `country`) VALUES
-(2, 'teste', 'teste', 1, 'teste', 0, '', '', ''),
-(6, 'mmm', '66vdvd', 1, 'vksdvkjds', 0, 'vsdjkv', 'hdj', 'hvdbjv');
+INSERT INTO `users` (`id_user`, `email`, `password`, `type`, `request`, `ban_user`, `image`, `gender`, `country`, `signature`) VALUES
+(2, 'teste', 'teste', 1, 'teste', 0, '', '', '', ''),
+(6, 'mmm', '66vdvd', 1, 'vksdvkjds', 0, 'vsdjkv', 'hdj', 'hvdbjv', '');
 
 --
 -- Indexes for dumped tables
@@ -139,14 +153,22 @@ ALTER TABLE `courses`
   ADD KEY `id_user` (`id_user`),
   ADD KEY `id_user_2` (`id_user`),
   ADD KEY `id_user_3` (`id_user`),
-  ADD KEY `id_sub` (`id_sub`);
+  ADD KEY `id_sub` (`id_sub`),
+  ADD KEY `id_type` (`id_type`);
 
 --
 -- Indexes for table `subcategories`
 --
 ALTER TABLE `subcategories`
   ADD PRIMARY KEY (`id_sub`),
-  ADD KEY `id_cato` (`id_cato`);
+  ADD KEY `id_cato` (`id_cato`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `typecourses`
+--
+ALTER TABLE `typecourses`
+  ADD PRIMARY KEY (`id_type`);
 
 --
 -- Indexes for table `users`
@@ -179,6 +201,11 @@ ALTER TABLE `courses`
 --
 ALTER TABLE `subcategories`
   MODIFY `id_sub` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `typecourses`
+--
+ALTER TABLE `typecourses`
+  MODIFY `id_type` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --

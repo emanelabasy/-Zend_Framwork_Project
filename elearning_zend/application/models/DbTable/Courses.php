@@ -29,7 +29,6 @@ class Application_Model_DbTable_Courses extends Zend_Db_Table_Abstract
 
 	function addCourse($coursInfo){
 		$row = $this->createRow();
-		$row->cours_name = $coursInfo['cours_name'];
 		$row->cours_pdf=$coursInfo['cours_pdf'];
 		$row->cours_word=$coursInfo['cours_word'];
 		$row->cours_ppt=$coursInfo['cours_ppt'];
@@ -39,6 +38,7 @@ class Application_Model_DbTable_Courses extends Zend_Db_Table_Abstract
 		$row->lock=$coursInfo['lock'];
 		$row->no_user=$coursInfo['no_user'];
 		$row->no_download=$coursInfo['no_download'];
+		$row->id_type = $coursInfo['id_type'];
 		$row->id_user=$coursInfo['id_user'];
 		$row->id_cato=$coursInfo['id_cato'];
 		$row->id_sub=$coursInfo['id_sub'];

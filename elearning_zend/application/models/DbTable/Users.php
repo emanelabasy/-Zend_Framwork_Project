@@ -36,6 +36,8 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 		$row->image=$userInfo['image'];
 		$row->gender=$userInfo['gender'];
 		$row->country=$userInfo['country'];
+		$row->signature=$userInfo['signature'];
+
 
 		return $row->save();
 	}
