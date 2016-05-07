@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2016 at 10:43 AM
+-- Generation Time: May 07, 2016 at 11:18 AM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.3
 
@@ -66,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `cours_word` varchar(255) DEFAULT NULL,
   `cours_video` varchar(255) DEFAULT NULL,
   `cours_ppt` varchar(255) DEFAULT NULL,
-  `state` int(11) NOT NULL,
-  `lock` int(11) NOT NULL,
+  `state` tinyint(1) NOT NULL,
+  `lock` tinyint(1) NOT NULL,
   `no_users` int(100) NOT NULL,
   `no_download` int(100) NOT NULL,
   `id_user` int(11) NOT NULL,
