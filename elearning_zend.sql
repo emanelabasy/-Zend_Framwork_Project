@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 06, 2016 at 03:23 PM
+-- Generation Time: May 07, 2016 at 10:43 AM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.3
 
@@ -123,8 +123,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id_user` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` char(32) NOT NULL,
-  `type` int(11) NOT NULL,
-  `ban_user` int(11) NOT NULL,
+  `type` tinyint(1) NOT NULL,
+  `ban_user` tinyint(1) NOT NULL,
   `image` varchar(255) NOT NULL,
   `gender` varchar(100) NOT NULL,
   `country` varchar(255) NOT NULL,
