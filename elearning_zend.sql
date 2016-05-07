@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2016 at 11:18 AM
+-- Generation Time: May 07, 2016 at 01:38 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.3
 
@@ -28,16 +28,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id_cato` int(11) NOT NULL,
-  `category` varchar(255) NOT NULL
+  `category` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `desc` varchar(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id_cato`, `category`) VALUES
-(3, 'mysql'),
-(2, 'php');
+INSERT INTO `categories` (`id_cato`, `category`, `image`, `desc`) VALUES
+(2, 'php', NULL, ''),
+(3, 'mysql', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -99,7 +101,9 @@ CREATE TABLE IF NOT EXISTS `subcategories` (
   `id_sub` int(11) NOT NULL,
   `sub_category` varchar(255) NOT NULL,
   `id_cato` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL
+  `id_user` int(11) NOT NULL,
+  `sub_image` varchar(255) DEFAULT NULL,
+  `sub_desc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -125,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` char(32) NOT NULL,
   `type` tinyint(1) NOT NULL,
   `ban_user` tinyint(1) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `gender` varchar(100) NOT NULL,
   `country` varchar(255) NOT NULL,
   `signature` varchar(255) NOT NULL
