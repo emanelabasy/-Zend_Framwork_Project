@@ -1,6 +1,6 @@
 <?php
 
-class SubcategoriesController extends Zend_Controller_Action
+class MaterialsController extends Zend_Controller_Action
 {
 
     public function init()

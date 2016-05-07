@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2016 at 01:38 PM
+-- Generation Time: May 07, 2016 at 04:42 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.3
 
@@ -62,19 +62,34 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 CREATE TABLE IF NOT EXISTS `courses` (
   `id_cours` int(11) NOT NULL,
-  `id_type` int(11) NOT NULL,
-  `cours_pdf` varchar(255) DEFAULT NULL,
+  `course` varchar(255) NOT NULL,
+  `id_cato` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `cours_image` varchar(255) DEFAULT NULL,
-  `cours_word` varchar(255) DEFAULT NULL,
-  `cours_video` varchar(255) DEFAULT NULL,
-  `cours_ppt` varchar(255) DEFAULT NULL,
+  `cours_desc` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `materials`
+--
+
+CREATE TABLE IF NOT EXISTS `materials` (
+  `id_mat` int(11) NOT NULL,
+  `id_type` int(11) NOT NULL,
+  `mat_pdf` varchar(255) DEFAULT NULL,
+  `mat_image` varchar(255) DEFAULT NULL,
+  `mat_word` varchar(255) DEFAULT NULL,
+  `mat_video` varchar(255) DEFAULT NULL,
+  `mat_ppt` varchar(255) DEFAULT NULL,
   `state` tinyint(1) NOT NULL,
   `lock` tinyint(1) NOT NULL,
   `no_users` int(100) NOT NULL,
   `no_download` int(100) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_cato` int(11) NOT NULL,
-  `id_sub` int(11) NOT NULL
+  `id_cours` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -87,32 +102,17 @@ CREATE TABLE IF NOT EXISTS `requests` (
   `id_req` int(11) NOT NULL,
   `message` varchar(255) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `id_sub` int(11) DEFAULT NULL,
-  `id_cours` int(11) DEFAULT NULL
+  `id_cours` int(11) DEFAULT NULL,
+  `id_mat` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subcategories`
+-- Table structure for table `typematerials`
 --
 
-CREATE TABLE IF NOT EXISTS `subcategories` (
-  `id_sub` int(11) NOT NULL,
-  `sub_category` varchar(255) NOT NULL,
-  `id_cato` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `sub_image` varchar(255) DEFAULT NULL,
-  `sub_desc` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `typecourses`
---
-
-CREATE TABLE IF NOT EXISTS `typecourses` (
+CREATE TABLE IF NOT EXISTS `typematerials` (
   `id_type` int(11) NOT NULL,
   `contain_type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -166,11 +166,20 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `courses`
   ADD PRIMARY KEY (`id_cours`),
+  ADD KEY `id_cato` (`id_cato`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `materials`
+--
+ALTER TABLE `materials`
+  ADD PRIMARY KEY (`id_mat`),
   ADD KEY `id_user` (`id_user`),
   ADD KEY `id_user_2` (`id_user`),
   ADD KEY `id_user_3` (`id_user`),
-  ADD KEY `id_sub` (`id_sub`),
-  ADD KEY `id_type` (`id_type`);
+  ADD KEY `id_sub` (`id_cours`),
+  ADD KEY `id_type` (`id_type`),
+  ADD KEY `id_cours` (`id_cours`);
 
 --
 -- Indexes for table `requests`
@@ -180,17 +189,9 @@ ALTER TABLE `requests`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `subcategories`
+-- Indexes for table `typematerials`
 --
-ALTER TABLE `subcategories`
-  ADD PRIMARY KEY (`id_sub`),
-  ADD KEY `id_cato` (`id_cato`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Indexes for table `typecourses`
---
-ALTER TABLE `typecourses`
+ALTER TABLE `typematerials`
   ADD PRIMARY KEY (`id_type`);
 
 --
@@ -220,19 +221,19 @@ ALTER TABLE `comments`
 ALTER TABLE `courses`
   MODIFY `id_cours` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `materials`
+--
+ALTER TABLE `materials`
+  MODIFY `id_mat` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
   MODIFY `id_req` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `subcategories`
+-- AUTO_INCREMENT for table `typematerials`
 --
-ALTER TABLE `subcategories`
-  MODIFY `id_sub` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `typecourses`
---
-ALTER TABLE `typecourses`
+ALTER TABLE `typematerials`
   MODIFY `id_type` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`

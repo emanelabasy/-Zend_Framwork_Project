@@ -1,30 +1,30 @@
 <?php
 
-class Application_Model_DbTable_Typecourses extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_Typematerials extends Zend_Db_Table_Abstract
 {
 
-    protected $_name = 'typecourses';
+    protected $_name = 'typematerials';
 	
 
-	function listTypecourses(){
+	function listTypematerials(){
 		return $this->fetchAll()->toArray();
 	}
 	
-	function getTypecourseById($id_type){
+	function getTypematerialById($id_type){
 		return $this->find($id_type)->toArray();
 	}
 
-	function updateTypecourse($typeInfo,$id_type){
+	function updateTypematerial($typeInfo,$id_type){
 		return $this->update($typeInfo,'id_type='.$id_type);
 	}
 
 	
-	function deleteTypecourse($id_type){
+	function deleteTypematerial($id_type){
 		return $this->delete('id_type='.$id_type);
 	}
 
 
-	function addTypecourse($typeInfo){
+	function addTypematerial($typeInfo){
 		$row = $this->createRow();
 		$row->contain_type = $typeInfo['contain_type'];
 
