@@ -1,13 +1,117 @@
-
 <?php echo $this->doctype() ?>
 <html>
 <head>
 <?php echo $this->headMeta(); ?>
-<?php echo $this->headTitle() ?>
-<?php echo $this->headLink() ?>
+<?php echo $this->headTitle(); ?>
+<?php echo $this->headLink(); ?>
 </head>
-
-<?php echo $this->headScript() ?>
 <body>
+<div class="wrap">
+<div class="wrapper">
+<div class="logo">
+	<a href="<?php $this->baseUrl()."/users/index"?>"><h1>SLMS</h1></a>
+</div>
+<div class="header_right">
+	<div class="cssmenu">
+		<ul>
+			<?php 
+	            $auth = Zend_Auth::getInstance();
 
-<?php echo $this->layout()->content; ?>
+	                if($auth->hasIdentity()){
+	                    
+	                    $identity = $auth->getIdentity(); 
+	                    // $id = $identity->id;
+	                    $username = $identity->username;
+	                    echo "Welcome ".$username;
+	                
+	        ?>
+		  	<li class="active">
+		  		<?php
+                    echo "<a href='".$this->baseUrl()."/users/index'> Home </a>";
+                ?>
+		  	</li>
+			<li>
+				<?php 
+                	echo "<a href='".$this->baseUrl()."/users/index'> All Categories </a>";  
+                ?>
+			</li>
+			<li>
+				<?php 
+                	echo "<a href='".$this->baseUrl()."/users/index'> Profile </a>";  
+                ?>
+			</li>
+			<li>
+				<?php
+                    echo "<a href='".$this->baseUrl()."/users/logout'> Log Out </a>";
+                ?>
+			</li>
+			<?php
+                }
+                else{
+            ?>
+			<li class="has-sub">
+				<?php
+                    echo "<a href='".$this->baseUrl()."/users/login'> Sign In </a>";
+                ?>
+			</li>
+			<li class="last">
+				<?php
+                    echo "<a href='".$this->baseUrl()."/users/add'> Sign Up </a>";
+                ?>
+			</li>
+			<?php
+                }
+            ?>
+			<div class="clear"></div>
+		 </ul>
+	</div>
+</div>
+	<div class="clear"></div>
+</div>
+</div>
+<div class="fluid_container">
+   <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
+          <div data-src="images/slider1.jpg"> </div>
+            <div data-src="images/slider2.jpg"> </div>
+            <div  data-src="images/slider3.jpg"> </div>
+  </div>
+</div>
+	<div class="clear"></div>
+<div class="wrap">
+<div class="wrapper">
+
+
+
+<?php
+
+
+
+echo $this->layout()->content;
+
+
+?>
+
+</div>
+</div>
+<div class="wrap">
+<div class="wrapper">
+	<div class="footer">
+		<div class="social-icons">
+	   		  	<ul>
+			      <li class="icon_1"><a href="#" target="_blank"> </a></li>
+			      <li class="icon_2"><a href="#" target="_blank"> </a></li>
+			      <li class="icon_3"><a href="#" target="_blank"> </a></li>
+			      <li class="icon_4"><a href="#" target="_blank"> </a></li>
+			      <div class="clear"></div>
+		     </ul>
+	   	 </div>
+		<a href="index.html"><h2>erudite</h2></a>
+		<div class="copy">
+			<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="http://w3layouts.com/"> W3Layouts</a></p>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+</div>
+</body>
+</html>
