@@ -27,15 +27,17 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 
 	function addUser($userInfo){
 		$row = $this->createRow();
+
 		$row->email = $userInfo['email'];
 		// md5 this way for hash password in database
 		$row->password = md5($userInfo['password']);
-		$row->ban_user=$userInfo['ban_user'];
-		$row->type=$userInfo['type'];
+		$row->ban_user=1;
+		$row->type=0;
 		$row->image=$userInfo['image'];
 		$row->gender=$userInfo['gender'];
 		$row->country=$userInfo['country'];
 		$row->signature=$userInfo['signature'];
+		$row->username=$userInfo['username'];
 
 
 		return $row->save();
