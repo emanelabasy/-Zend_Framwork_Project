@@ -1,0 +1,23 @@
+<br /><br />
+<div id="view-content">
+	<?php
+	
+	echo "<a href='".$this->baseUrl()."/course/add/' >Add Course</a>";
+
+	foreach ($this->courses as $course){
+
+		echo "<div style='background-color:white; margin:auto; margin-bottom:5px; padding:5px; border:3px solid pink; width:1000px; height:530px;' >";
+
+		echo "<h1><a href=".$this->baseUrl()."/course/single/course_id/".$course['id_cours']." >".$course['course'].'</a></h1>';
+		echo "<br /><img src='".$this->baseUrl()."/images/courses/".$course['cours_image']."'/>";
+		echo "<label> Course Description : </label><h3>".$course['cours_desc'].'</h3><br />';
+
+		echo "<h7><a class='btn btn-info' style='background-color: rgb(191, 204, 41);' href=".$this->baseUrl()."/course/single/course_id/".$course['id_cours'].'>Read More</a></h7><br />';
+
+		echo "<a class='btn btn-info' style='background-color: rgb(191, 204, 41);' href='".$this->baseUrl()."/course/edit/id_cours/".$course['id_cours']."'> Edit </a>  &nbsp<a class='btn btn-danger' style='background-color: rgb(191, 204, 41);' href='".$this->baseUrl()."/course/delete/id_cours/".$course['id_cours']."'> Delete </a></div>";
+		}
+
+
+?>
+</div>
+
