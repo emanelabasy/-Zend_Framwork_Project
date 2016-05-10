@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2016 at 04:42 PM
+-- Generation Time: May 10, 2016 at 11:50 AM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.3
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `category` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `desc` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `categories`
@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 INSERT INTO `categories` (`id_cato`, `category`, `image`, `desc`) VALUES
 (2, 'php', NULL, ''),
-(3, 'mysql', NULL, '');
+(3, 'mysql', NULL, ''),
+(4, 'program', NULL, 'program');
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,14 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `id_user` int(11) NOT NULL,
   `cours_image` varchar(255) DEFAULT NULL,
   `cours_desc` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id_cours`, `course`, `id_cato`, `id_user`, `cours_image`, `cours_desc`) VALUES
+(1, 'php', 4, 2, NULL, 'phphphphph');
 
 -- --------------------------------------------------------
 
@@ -86,11 +94,17 @@ CREATE TABLE IF NOT EXISTS `materials` (
   `state` tinyint(1) NOT NULL,
   `lock` tinyint(1) NOT NULL,
   `no_users` int(100) NOT NULL,
-  `no_download` int(100) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_cato` int(11) NOT NULL,
   `id_cours` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `materials`
+--
+
+INSERT INTO `materials` (`id_mat`, `id_type`, `mat_pdf`, `mat_image`, `mat_word`, `mat_video`, `mat_ppt`, `state`, `lock`, `no_users`, `id_user`, `id_cato`, `id_cours`) VALUES
+(1, 1, NULL, 'pic3.jpg', NULL, NULL, NULL, 1, 0, 0, 2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -115,7 +129,46 @@ CREATE TABLE IF NOT EXISTS `requests` (
 CREATE TABLE IF NOT EXISTS `typematerials` (
   `id_type` int(11) NOT NULL,
   `contain_type` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `typematerials`
+--
+
+INSERT INTO `typematerials` (`id_type`, `contain_type`) VALUES
+(1, 'lectures'),
+(2, 'Labs'),
+(4, 'Readings');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `typeuploads`
+--
+
+CREATE TABLE IF NOT EXISTS `typeuploads` (
+  `id_up` int(11) NOT NULL,
+  `contain_upload` varchar(255) NOT NULL,
+  `id_type` int(11) NOT NULL,
+  `no_download` int(50) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `typeuploads`
+--
+
+INSERT INTO `typeuploads` (`id_up`, `contain_upload`, `id_type`, `no_download`) VALUES
+(2, 'Videos', 1, 0),
+(3, 'Word', 2, 0),
+(4, 'Videos', 2, 0),
+(6, 'Image', 1, 0),
+(7, 'PPt', 1, 0),
+(9, 'PDf', 1, 0),
+(10, 'PDF', 2, 0),
+(12, 'Image', 2, 0),
+(13, 'Video', 4, 0),
+(14, 'PPT', 4, 0),
+(19, 'PDF', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -195,6 +248,12 @@ ALTER TABLE `typematerials`
   ADD PRIMARY KEY (`id_type`);
 
 --
+-- Indexes for table `typeuploads`
+--
+ALTER TABLE `typeuploads`
+  ADD PRIMARY KEY (`id_up`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -209,7 +268,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id_cato` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_cato` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `comments`
 --
@@ -219,12 +278,12 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id_cours` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cours` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
-  MODIFY `id_mat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_mat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `requests`
 --
@@ -234,7 +293,12 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `typematerials`
 --
 ALTER TABLE `typematerials`
-  MODIFY `id_type` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_type` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `typeuploads`
+--
+ALTER TABLE `typeuploads`
+  MODIFY `id_up` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `users`
 --

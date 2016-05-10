@@ -6,28 +6,28 @@ class Application_Model_DbTable_Materials extends Zend_Db_Table_Abstract
     protected $_name = 'materials';
 	
 
-	function listCourses(){
+	function listMaterials(){
 		return $this->fetchAll()->toArray();
 	}
 	
 	
-	function getCourseById($id_mat){
+	function getMaterialById($id_mat){
 		return $this->find($id_mat)->toArray();
 	}
 
-	function updateCourse($matInfo,$id_mat){
+	function updateMaterial($matInfo,$id_mat){
 		return $this->update($matInfo,'id_mat='.$id_mat);
 
 
 	}
 
 	
-	function deleteCourse($id_mat){
+	function deleteMaterial($id_mat){
 		return $this->delete('id_mat='.$id_mat);
 	}
 
 
-	function addCourse($matInfo){
+	function addMaterial($matInfo){
 		$row = $this->createRow();
 		$row->mat_pdf=$matInfo['mat_pdf'];
 		$row->mat_word=$matInfo['mat_word'];

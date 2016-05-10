@@ -1,0 +1,102 @@
+<div>
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Add New Materials</button>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">x</span>   
+        <h1> Add New Materials : </h>    
+            <?php 
+                echo $this->form;
+            ?>
+      </div>
+    </div>
+</div>
+<hr/>
+<font color="red" size="5">Total Upload/Download</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable> {sum upload}</lable><img  width="30" height="30" src="/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/up.png"/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable> {sum download}</lable><img  width="30" height="30" src="/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/down.png"/>
+<hr/>
+<div>
+    <?php
+	foreach ($this->typematerials as $tymat){
+            echo "<a href='".$this->baseUrl()."/materials/single/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'><font size='5'>".$tymat['id_type']." :-  ".$tymat['contain_type'].'</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(';
+            echo "<a href='".$this->baseUrl()."/typematerials/edit/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'>"
+              . " Edit </a> "."<a href='".$this->baseUrl()."/typematerials/delete/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'> Delete )</a> <br />";
+	}
+        
+        echo "<a href='".$this->baseUrl()."/typematerials/addtypemat/course_id/".$this->course_id."/id_type/".$this->id_type."'>"
+          . " <button>Add New Type Materials</button> </a> <br/><br/>";
+    ?>
+
+</div>
+
+<hr/>
+<div>
+    <?php
+      foreach ($this->typeuploadss as $tyup){
+          echo "<a href='".$this->baseUrl()."/materials/single/course_id/".$this->course_id."/id_type/".$this->id_type."/id_up/".$tyup['id_up']."'>"
+                  . "<font size='5'>".$tyup['id_up']." :-  ".$tyup['contain_upload'].'</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(';
+          echo "<a href='".$this->baseUrl()."/typeuploads/edit/course_id/".$this->course_id."/id_type/".$this->id_type."/id_up/".$tyup['id_up']."'>"
+            . " Edit </a> "."<a href='".$this->baseUrl()."/typeuploads/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_up/".$tyup['id_up']."'> Delete )</a>";
+          
+          echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <lable> {sum upload}</lable><img  width='30' height='30' src='/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/up.png'/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable> {sum download}</lable>
+            <img  width='30' height='30' src='/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/down.png'/><br/><br/>";
+          
+          
+      }
+
+      echo "<br/><br/><a href='".$this->baseUrl()."/typeuploads/addtypeup/course_id/".$this->course_id."/id_type/".$this->id_type."'>"
+        . " <button>Add New Upload Materials</button> </a> <br/><br/>";
+  ?>  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    // Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+
+
+</script>
+
