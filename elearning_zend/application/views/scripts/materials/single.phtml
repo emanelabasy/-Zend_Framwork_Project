@@ -44,8 +44,20 @@
               <lable> {sum upload}</lable><img  width='30' height='30' src='/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/up.png'/>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable> {sum download}</lable>
             <img  width='30' height='30' src='/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/down.png'/><br/><br/>";
+          if(($tyup['contain_upload'] == 'image') or($tyup['contain_upload'] == 'Image') ) { 
+            foreach ($this->typeimages as $tyimage){
+                  if($tyimage['mat_image'] != NULL){
+                    echo "<a href='".$this->baseUrl()."/materials/showsingle/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyimage['id_mat']."'>"
+                            . "<img  width='150' height='150' src='".$this->baseUrl()."/images/materials/".$tyimage['mat_image']."'/>"
+                            . "</a>";
+                    
+                    echo "<a href='".$this->baseUrl()."/materials/edit/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyimage['id_mat']."'>"
+                            . "(Delete )</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                  }
+              }
+          }
           
-          
+         echo "<br/><hr/>";
       }
 
       echo "<br/><br/><a href='".$this->baseUrl()."/typeuploads/addtypeup/course_id/".$this->course_id."/id_type/".$this->id_type."'>"

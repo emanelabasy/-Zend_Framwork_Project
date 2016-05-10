@@ -14,11 +14,34 @@ class Application_Model_DbTable_Materials extends Zend_Db_Table_Abstract
 	function getMaterialById($id_mat){
 		return $this->find($id_mat)->toArray();
 	}
+        
+        function imageMaterialById($id_type,$id_cours){
+            $select=$this-> select()->from("materials",'*')-> where('id_type='.$id_type ,' id_cours='.$id_cours);
+            return $this->fetchAll($select);
+	}
+        
+        function videoMaterialById($id_type,$id_cours){
+            $select=$this-> select()->from("materials",'mat_video')-> where('id_type='.$id_type,'id_cours='.$id_cours);
+            return $this->fetchAll($select);
+	}
+        
+        function PDFMaterialById($id_type,$id_cours){
+            $select=$this-> select()->from("materials",'mat_pdf')-> where('id_type='.$id_type ,'id_cours='.$id_cours);
+            return $this->fetchAll($select);
+	}
+        
+        function PPTMaterialById($id_type,$id_cours){
+            $select=$this-> select()->from("materials",'mat_ppt')-> where('id_type='.$id_type,'id_cours='.$id_cours);
+            return $this->fetchAll($select);
+	}
+        
+        function wordMaterialById($id_type,$id_cours){
+            $select=$this-> select()->from("materials",'mat_word')-> where('id_type='.$id_type,'id_cours='.$id_cours);
+            return $this->fetchAll($select);
+	}
 
 	function updateMaterial($matInfo,$id_mat){
-		return $this->update($matInfo,'id_mat='.$id_mat);
-
-
+            return $this->update($matInfo,'id_mat='.$id_mat);
 	}
 
 	
@@ -34,14 +57,13 @@ class Application_Model_DbTable_Materials extends Zend_Db_Table_Abstract
 		$row->mat_ppt=$matInfo['mat_ppt'];
 		$row->mat_video=$matInfo['mat_video'];
 		$row->mat_image=$matInfo['mat_image'];
-		$row->state=$matInfo['state'];
-		$row->lock=$matInfo['lock'];
-		$row->no_user=$matInfo['no_user'];
-		$row->no_download=$matInfo['no_download'];
-		$row->id_type = $matInfo['id_type'];
-		$row->id_user=$matInfo['id_user'];
-		$row->id_cato=$matInfo['id_cato'];
-		$row->id_sub=$matInfo['id_sub'];
+                $row->lock=$matInfo[0];
+		$row->state=$matInfo[1];
+		$row->id_type = $matInfo[2];
+		$row->id_user=$matInfo[3];
+                $row->id_cours=$matInfo[4];
+                $row->no_users=$matInfo[5];
+//		$row->id_cato=$matInfo['id_cato'];
 
 		return $row->save();
 	}

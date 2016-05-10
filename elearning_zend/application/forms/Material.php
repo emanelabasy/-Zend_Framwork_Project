@@ -13,7 +13,7 @@ class Application_Form_Material extends Zend_Form
 //                
 		$mat_image = new Zend_Form_Element_File('mat_image');
 		$mat_image->setLabel('Image Material :');
-		$mat_image->setDestination('/var/www/html/zend_project/-Zend_Framwork_Project/elearning_zend/public/images');
+		$mat_image->setDestination('/var/www/html/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/materials');
 		//$mat_image->setRequired();
                 
                 $mat_word = new Zend_Form_Element_File('mat_word');

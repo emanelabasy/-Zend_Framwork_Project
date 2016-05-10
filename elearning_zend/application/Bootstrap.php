@@ -15,30 +15,23 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 		// Set the initial stylesheet:
 		// Set the initial stylesheet:
-        $view->headLink()->appendStylesheet('/elearning_zend/public/css/bootstrap.min.css');
-        $view->headLink()->appendStylesheet('/elearning_zend/public/css/camera.css');
-        $view->headLink()->appendStylesheet('/elearning_zend/public/css/style.css');
+        $view->headLink()->appendStylesheet('/zend_project/-Zend_Framwork_Project/elearning_zend/public/css/bootstrap.min.css');
+        $view->headLink()->appendStylesheet('/zend_project/-Zend_Framwork_Project/elearning_zend/public/css/camera.css');
+        $view->headLink()->appendStylesheet('/zend_project/-Zend_Framwork_Project/elearning_zend/public/css/style.css');
+        $view->headLink()->appendStylesheet('/zend_project/-Zend_Framwork_Project/elearning_zend/public/css/emy.css');
         // $view->headLink()->appendStylesheet('/elearning_zend/public/');
         
         // Set the initial JS to load:
-        $view->headScript()->appendFile('/elearning_zend/public/js/jquery.min.js');
-        $view->headScript()->appendFile('/elearning_zend/public/js/camera.min.js');
-        $view->headScript()->appendFile('/elearning_zend/public/js/jquery.easing.1.3.js');
-        $view->headScript()->appendFile('/elearning_zend/public/js/jquery.mobile.customized.min.js');
+        $view->headScript()->appendFile('/zend_project/-Zend_Framwork_Project/elearning_zend/public/js/jquery.min.js');
+        $view->headScript()->appendFile('/zend_project/-Zend_Framwork_Project/elearning_zend/public/js/camera.min.js');
+        $view->headScript()->appendFile('/zend_project/-Zend_Framwork_Project/elearning_zend/public/js/jquery.easing.1.3.js');
+        $view->headScript()->appendFile('/zend_project/-Zend_Framwork_Project/elearning_zend/public/js/jquery.mobile.customized.min.js');
+    }   
 
-        }   
-
-
-		// Set the initial JS to load:
-		//$view->headScript()->prependFile('/elearning/public/js/');
+    protected function _initSession() {
+    	Zend_Session::start();
+    	$session = new Zend_Session_Namespace('Zend_Auth');
+    }
 	
-	protected function _initSession(){
-		Zend_Session::start();
-		$session = new Zend_Session_Namespace( 'Zend_Auth' );
-		$session->setExpirationSeconds( 1800 );
-	}
-
-    
-
 }
 
