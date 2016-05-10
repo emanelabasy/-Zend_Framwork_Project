@@ -25,6 +25,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->headScript()->appendFile('/elearning_zend/public/js/camera.min.js');
         $view->headScript()->appendFile('/elearning_zend/public/js/jquery.easing.1.3.js');
         $view->headScript()->appendFile('/elearning_zend/public/js/jquery.mobile.customized.min.js');
+
         }   
 
 
@@ -36,5 +37,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$session = new Zend_Session_Namespace( 'Zend_Auth' );
 		$session->setExpirationSeconds( 1800 );
 	}
+
+    
+
 }
 
