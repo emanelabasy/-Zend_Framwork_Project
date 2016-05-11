@@ -11,8 +11,13 @@ class CourseController extends Zend_Controller_Action
     }
 
     public function indexAction()
-    {
-         $this->view->courses = $this->model->listCourses();
+    {   
+
+            $cat_id = $this->getRequest()->getParam('id');
+            $category = new Application_Model_DbTable_Cateogry();
+            $this->view->cateogry = $category->getCategoriesById($cat_id);
+            // var_dump($this->cateogry);
+            $this->view->courses = $this->model->listCourses();
     }
 
     public function addAction()
@@ -21,7 +26,6 @@ class CourseController extends Zend_Controller_Action
         if($auth->hasIdentity()){
             $identity = $auth->getIdentity(); 
             $user_id = $identity->id;
- 
     	   	$form= new Application_Form_Course();
             // $form->removeElement('cimage');
 	        if($this->getRequest()->isPost()) {
@@ -33,6 +37,10 @@ class CourseController extends Zend_Controller_Action
 	                }
 	            }
 	        }
+
+            $layout = $this->_helper->layout();
+            $layout->setLayout('admin-layout');
+
 	        $this->view->form = $form;
 	    }
     }
@@ -41,7 +49,8 @@ class CourseController extends Zend_Controller_Action
     {
     	//Get a single Course//
         $id = $this->getRequest()->getParam('course_id');
-        $this->view->course = $this->model->getCourseById($id);
+        // $this->view->course = $this->model->getCourseById($id);
+        $this->redirect('materials/single/course_id/'.$id.'/id_type/1');
 
     }
 

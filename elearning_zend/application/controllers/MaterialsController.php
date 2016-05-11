@@ -22,6 +22,8 @@ class MaterialsController extends Zend_Controller_Action
         $this->view->id_type=$id_type;
         $this->view->course_id=$course_id;
         
+        $course=new Application_Model_DbTable_Course();
+        $this->view->course = $course->getCourseById($course_id);
        $typematerialss= new Application_Model_DbTable_Typematerials();
        $this->view-> typematerials= $typematerialss->listTypematerials();
        

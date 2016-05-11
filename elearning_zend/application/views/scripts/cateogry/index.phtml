@@ -1,0 +1,24 @@
+<?php
+//
+//var_dump($this->cateogries);
+//?>
+
+
+<div class="container">
+<?php
+echo "<a class='btn btn-info' href='".$this->baseUrl()."/cateogry/add'> Add Category </a> <br>";
+
+foreach ($this->cateogries as $cato){
+    
+//    echo $cato['id_cato'];  
+    echo "<label> Tilte: </label><a href=".$this->baseUrl()."/cateogry/single/id/".$cato['id_cato']." >".$cato['category'].'</a><br />';
+      echo "<img src='".$this->baseUrl()."/images/category/".$cato['image']."'/><br>";
+    
+      echo "<label> Desc: </label>".$cato['desc'].'<br />';
+      echo "<a class='btn btn-info' href='".$this->baseUrl()."/cateogry/edit/id/".$cato['id_cato']."'> Edit </a> ".
+             "<a class='btn btn-danger' href='".$this->baseUrl()."/cateogry/delete/id/".$cato['id_cato']."'> Delete </a> <br />"; 	
+      echo str_repeat('*', 100).'<br />';
+	}
+?>
+</div>
+

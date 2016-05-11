@@ -33,7 +33,7 @@ class UsersController extends Zend_Controller_Action
                 }
            
                 if ($this->model->addUser($data))
-                    $this->redirect('users/index');
+                    $this->redirect('users/login');
                 }}
                  $this->view->form = $form;
             }
@@ -57,8 +57,8 @@ class UsersController extends Zend_Controller_Action
                 $auth = Zend_Auth::getInstance();
                 $storage = $auth->getStorage();
                 $storage->write($adapter->getResultRowObject(array('username',
-                    'password')));
-                $this->_redirect('users/index');
+                    'id')));
+                $this->_redirect('cateogry/index');
             }
             
                 else {

@@ -3,40 +3,33 @@
 class Application_Model_DbTable_Requests extends Zend_Db_Table_Abstract
 {
 
-    protected $_name = 'requests';
+      protected $_name = 'requests';
 	
 
-	function listRequests(){
+	function listCategories(){
 		return $this->fetchAll()->toArray();
 	}
-	
-	
-	function getRequestById($id_req){
-		return $this->find($id_req)->toArray();
-	}
-
-	function updateRequest($reqInfo,$id_req){
-		return $this->update($reqInfo,'id_req='.$id_req);
-
-
-	}
+        
+//        function userCategories($id){
+//		$result = $this->select('*')->where('user_id='.$id);
+//		return $this->fetchAll($result)->toArray();	
+//	}
 
 	
-	function deleteRequest($id_req){
-		return $this->delete('id_req='.$id_req);
+	
+//	function deleteCategories($id){
+//		return $this->delete('id_cato='.$id);
+//	}
+	
+        
+        function addRequest($data){
+	
+        $row = $this->createRow();   
+        $row->title = $data['title'];
+        $row->message = $data['message'];
+        $row->Type_course = $data['Type_course'];
+        return $row->save();
 	}
-
-
-	function addRequest($reqInfo){
-		$row = $this->createRow();
-		$row->message = $reqInfo['message'];
-		$row->id_cours = $reqInfo['id_cours'];		
-		$row->id_sub = $reqInfo['id_sub'];
-		$row->id_user = $reqInfo['id_user'];
-
-		return $row->save();
-	}
-
 
 }
 

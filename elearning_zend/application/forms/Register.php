@@ -38,7 +38,7 @@ class Application_Form_Register extends Zend_Form
               ->setValue("male");
        $image = new Zend_Form_Element_File('image');
        $image->setLabel('Upload your image:')
-             ->setDestination('/var/www/html/zend/project2/-Zend_Framwork_Project/elearning_zend/public/images')
+             ->setDestination('/var/www/html/z/-Zend_Framwork_Project/elearning_zend/public/images/profile')
              ->setValueDisabled(true);
        $image->addValidator('ImageSize', false, array(
                     'minwidth' => 150,
