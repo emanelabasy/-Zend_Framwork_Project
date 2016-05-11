@@ -13,20 +13,26 @@ class RequestsController extends Zend_Controller_Action
     public function indexAction()
     {
          
-         $form= new Application_Form_Requests();
-         
-         if ($this->getRequest()->isPost()) {
-            if ($form->isValid($this->getRequest()->getParams())) {
-                $data = $form->getValues();
-                
-               if ($this->request->addRequest($data)) {
-                    $this->redirect("cateogry/index");
-                }
-            }
-        }
-        
-         $this->view->form = $form;
+        $this->view->request = $this->request->listRequest();
     }
     
+    
+    public function addAction(){
+        
+        $form= new Application_Form_Requests();
+
+        if ($this->getRequest()->isPost()) {
+           if ($form->isValid($this->getRequest()->getParams())) {
+               $data = $form->getValues();
+
+              if ($this->request->addRequest($data)) {
+                   $this->redirect("cateogry/index");
+               }
+           }
+       }
+
+        $this->view->form = $form;
+                
+    }
 
 }

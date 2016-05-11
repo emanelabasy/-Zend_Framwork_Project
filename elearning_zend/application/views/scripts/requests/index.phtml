@@ -1,13 +1,26 @@
-<?php
-//
-//var_dump($this->cateogries);
-//?>
+
 
 
 <div class="container">
-    <h1>Add Request</h1> 
+    <h1> All Request</h1> 
 <?php
-   echo  $this->form;
+    foreach ($this->request as $req){
+       
+    echo "<label> Title: </label>".$req['message'].'<br />';
+    echo "<label> Message: </label>".$req['title'].'<br />';
+    if ($req['Type_course']==0) {
+        
+        echo "<label> Type:Course </label> <br/>" ;
+    }else{
+        
+        echo "<label> Type:Matrial </label> <br/>" ;
+    }
+    
+    
+    echo str_repeat('*', 100).'<br />';
+    
+}
 ?>
+    
 </div>
 
