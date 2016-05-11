@@ -27,7 +27,7 @@ class Application_Form_Update extends Zend_Form
               ->setValue("male");
        $image = new Zend_Form_Element_File('image');
        $image->setLabel('Upload your image:');
-       $image->setDestination('/var/www/html/z/-Zend_Framwork_Project/elearning_zend/public/images/profile');
+       $image->setDestination(APPLICATION_PATH.'/../public/images/profile');
             
 
        $country=new Zend_Form_Element_Select('country',array(

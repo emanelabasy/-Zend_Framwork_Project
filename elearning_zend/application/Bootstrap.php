@@ -10,6 +10,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
          // var_dump($this->view);die;
         
+        // echo $this->layout->getLayout();die;
 
         $view->doctype('HTML5');
         //Meta

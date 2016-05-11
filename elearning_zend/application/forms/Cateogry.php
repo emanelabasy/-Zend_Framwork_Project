@@ -11,7 +11,7 @@ class Application_Form_Cateogry extends Zend_Form
        
        $image = new Zend_Form_Element_File('image');
        $image->setLabel('image');
-       $image->setDestination('/var/www/html/z/-Zend_Framwork_Project/elearning_zend/public/images/category');
+       $image->setDestination(APPLICATION_PATH.'/../public/images/category');
        $image->setRequired();
        
        $desc= new Zend_Form_Element_Textarea('desc');

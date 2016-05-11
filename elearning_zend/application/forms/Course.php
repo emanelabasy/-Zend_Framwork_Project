@@ -13,12 +13,17 @@ class Application_Form_Course extends Zend_Form
 
 		$cours_image = new Zend_Form_Element_File('cours_image');
 		$cours_image->setLabel('Course Image');
-		$cours_image->setDestination('/var/www/html/z/-Zend_Framwork_Project/elearning_zend/public/images/courses/');
-		// $cours_image->setRequired();
+		$cours_image->setDestination(APPLICATION_PATH.'/../public/images/courses/');
+		$cours_image->setRequired();
 
-		// $cimage = new Zend_Form_Element_Image('cours_image');
-		// $cimage->setLabel('Course Image');
-		// $cimage->setAttribute('src', '/var/www/html/course/public/images/courses/2.jpg');
+		$category = new Application_Model_DbTable_Cateogry();
+
+		$selectCategory = new Zend_Form_Element_Select('category_id');
+		$selectCategory->addMultiOption(0,'Plz Select Category');
+		foreach ($category->fetchAll() as $cat) {
+			$selectCategory->addMultiOption($cat['id_cato'],$cat['category']);
+		}
+
 
 		$cours_desc= new Zend_Form_Element_Textarea('cours_desc');
 		$cours_desc->setLabel('Course Description');
@@ -31,7 +36,7 @@ class Application_Form_Course extends Zend_Form
 		$submit->setAttrib('class', 'btn btn-info');
 
 
-		$this->addElements(array($course,$cours_image,$cours_desc,$id_cato,$submit ));
+		$this->addElements(array($course,$selectCategory,$cours_image,$cours_desc,$id_cato,$submit ));
     }
 
 
