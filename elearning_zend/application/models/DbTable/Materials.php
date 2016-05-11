@@ -57,6 +57,11 @@ class Application_Model_DbTable_Materials extends Zend_Db_Table_Abstract
 		$row->mat_ppt=$matInfo['mat_ppt'];
 		$row->mat_video=$matInfo['mat_video'];
 		$row->mat_image=$matInfo['mat_image'];
+                $row->desc_pdf=$matInfo['desc_pdf'];
+		$row->desc_word=$matInfo['desc_word'];
+		$row->desc_ppt=$matInfo['desc_ppt'];
+		$row->desc_video=$matInfo['desc_video'];
+		$row->desc_image=$matInfo['desc_image'];
                 $row->lock=$matInfo[0];
 		$row->state=$matInfo[1];
 		$row->id_type = $matInfo[2];

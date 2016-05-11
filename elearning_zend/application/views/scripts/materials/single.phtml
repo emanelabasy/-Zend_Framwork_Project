@@ -15,6 +15,7 @@
 
 ?>
 
+
 <div>
     <!-- Trigger/Open The Modal -->
     <button id="myBtn">Add New Materials</button>
@@ -31,9 +32,7 @@
     </div>
 </div>
 <hr/>
-<font color="red" size="5">Total Upload/Download</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable> {sum upload}</lable><img  width="30" height="30" src="/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/up.png"/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable> {sum download}</lable><img  width="30" height="30" src="/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/down.png"/>
-<hr/>
+
 <div>
     <?php
 	foreach ($this->typematerials as $tymat){
@@ -55,24 +54,29 @@
           echo "<a href='".$this->baseUrl()."/materials/single/course_id/".$this->course_id."/id_type/".$this->id_type."/id_up/".$tyup['id_up']."'>"
                   . "<font size='5'>".$tyup['id_up']." :-  ".$tyup['contain_upload'].'</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(';
           echo "<a href='".$this->baseUrl()."/typeuploads/edit/course_id/".$this->course_id."/id_type/".$this->id_type."/id_up/".$tyup['id_up']."'>"
-            . " Edit </a> "."<a href='".$this->baseUrl()."/typeuploads/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_up/".$tyup['id_up']."'> Delete )</a>";
+            . " Edit </a> "."<a href='".$this->baseUrl()."/typeuploads/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_up/".$tyup['id_up']."'> Delete )</a><br/><br/>";
           
-          echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <lable> {sum upload}</lable><img  width='30' height='30' src='/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/up.png'/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable> {sum download}</lable>
-            <img  width='30' height='30' src='/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/down.png'/><br/><br/>";
+         
           if(($tyup['contain_upload'] == 'image') or($tyup['contain_upload'] == 'Image') ) { 
+             $upimage=0;
             foreach ($this->typeimages as $tyimage){
                   if($tyimage['mat_image'] != NULL){
+                      $upimage+=1;
                     echo "<a href='".$this->baseUrl()."/materials/showsingle/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyimage['id_mat']."'>"
                             . "<img  width='150' height='150' src='".$this->baseUrl()."/images/materials/".$tyimage['mat_image']."'/>"
                             . "</a>";
                     
-                    echo "<a href='".$this->baseUrl()."/materials/edit/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyimage['id_mat']."'>"
+                    echo "<a href='".$this->baseUrl()."/materials/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyimage['id_mat']."'>"
                             . "(Delete )</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                   }
               }
+               echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <lable>".$upimage."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/up.png'/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->numdownimage[1]['no_download']."</lable>
+            <img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/><br/><br/>";
           }
+          
+          
           
          echo "<br/><hr/>";
       }
@@ -81,6 +85,18 @@
         . " <button>Add New Upload Materials</button> </a> <br/><br/>";
   ?>  
 </div>
+
+
+<hr/>
+ <?php
+$totalupload=$upimage;
+echo "<font color='red' size='5'>Total Upload/Download</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$totalupload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/up.png'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->totaldownload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/>";
+?>
+  <hr/>
+
+
+
+
 
 
 

@@ -1,7 +1,7 @@
 <?php
     foreach ($this->showmaterial as $tyimage){
       echo "<img src='".$this->baseUrl()."/images/materials/".$tyimage['mat_image']."'/>";
-      
+      echo "<br/><br/><lable>".$tyimage['desc_image']."</lable><br><br/>";
       ?>
       
       <div>
@@ -23,7 +23,7 @@
 
      <?php
        
-      echo "<br/><br/><a href='#'><button>Download</button> </a> <br/><br/>";
+      echo "<br/><br/><a href='".$this->baseUrl()."/materials/downloadimage/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyimage['id_mat']."'><button>Download</button> </a> <br/><br/>";
     }
 
 
