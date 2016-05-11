@@ -12,9 +12,52 @@ class UsersController extends Zend_Controller_Action
 
     public function indexAction()
     {
-     	$this->view->users = $this->model->listUsers();
+    #osama will redirect here
+        $this->view->users = $this->model->listUsers();
 
     }
+
+    public function profileAction()
+    {
+    $auth = Zend_Auth::getInstance();
+    if($auth->hasIdentity()){
+        $identity = $auth->getIdentity(); 
+        $id = $identity->id_user;
+    $this->view->users  = $this->model->getUserById($id);
+        }
+    else
+    {
+        $this->_redirect('users/login');
+    }
+    }
+    function editAction(){
+    
+     $auth = Zend_Auth::getInstance();
+    if($auth->hasIdentity()){
+        $identity = $auth->getIdentity(); 
+        $id = $identity->id_user;
+    $user = $this->model->getUserById($id);
+    $form = new Application_Form_Update();
+    $form->populate($user[0]);
+    if($this->getRequest()->isPost()){
+        if($form->isValid($this->getRequest()->getParams())){
+        $data = $form->getValues();
+        $this->model->updateuser($data,$id);
+        }
+    }
+    $this->view->form = $form;
+    }
+    else
+    {
+        $this->_redirect('users/login');
+    }
+
+    
+
+    
+    
+
+}
     public function addAction()
     {
     	$form = new Application_Form_Register();
@@ -57,7 +100,7 @@ class UsersController extends Zend_Controller_Action
                 $auth = Zend_Auth::getInstance();
                 $storage = $auth->getStorage();
                 $storage->write($adapter->getResultRowObject(array('username',
-                    'id')));
+                    'id_user')));
                 $this->_redirect('cateogry/index');
             }
             
@@ -73,9 +116,8 @@ class UsersController extends Zend_Controller_Action
         $authorization =Zend_Auth::getInstance();
         if($authorization->hasIdentity()) {
             Zend_Session::destroy();  
-            $this->_redirect('users/index');
-        }else{
             $this->_redirect('users/login');
+        
         } 
         
     }
