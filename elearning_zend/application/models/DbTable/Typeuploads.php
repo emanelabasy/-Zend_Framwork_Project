@@ -16,15 +16,15 @@ class Application_Model_DbTable_Typeuploads extends Zend_Db_Table_Abstract
         
         
         
-        function filterrTypeuploadById($id_type){
-            $select=$this-> select()->from("typeuploads",'*')-> where('id_type='.$id_type);
+        function filterrTypeuploadById($course_id,$id_type){
+            $select=$this-> select()->from("typeuploads",'*')-> where('id_cours='.$course_id)-> where('id_type='.$id_type);
             return $this->fetchAll($select);
 	}
         
         
         
-        function imagedownload($id_type,$img){
-            $select=$this-> select()->from("typeuploads",'*')-> where('id_type='.$id_type,'contain_upload='.$img);
+        function imagedownload($id_type,$course_id,$img){
+            $select=$this-> select()->from("typeuploads",'*')-> where('id_cours='.$course_id)-> where('id_type='.$id_type);
             return $this->fetchAll($select);
 	}
        
@@ -47,6 +47,7 @@ class Application_Model_DbTable_Typeuploads extends Zend_Db_Table_Abstract
 		$row = $this->createRow();
 		$row->contain_upload = $upInfo['contain_upload'];
                 $row->id_type = $upInfo[0];
+                $row->id_cours = $upInfo[1];
 //                $row->no_download = $upInfo['no_download'];
                 $row->no_download = 0;
 

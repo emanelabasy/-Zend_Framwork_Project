@@ -16,13 +16,10 @@
 ?>
 
 <?php
-    echo "<a href='".$this->baseUrl()."/materials/addmaterial/course_id/".$this->course_id."/id_type/".$this->id_type."'><button>Add New Materials</button></a><br><hr/>";
+    echo "<a href='".$this->baseUrl()."/materials/addmaterial/course_id/".$this->course_id."/id_type/".$this->id_type."'><button>Add New Materials</button><br><hr/>";
     
 
 ?>
-<table>
-<tr>
-<td>
     <?php
 	foreach ($this->typematerials as $tymat){
             echo "<a href='".$this->baseUrl()."/materials/single/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'><font size='5'>".$tymat['id_type']." :-  ".$tymat['contain_type'].'</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(';
@@ -34,11 +31,11 @@
           . " <button>Add New Type Materials</button> </a> <br/><br/>";
     ?>
 
-</td>
+</div>
 
-<td>
+<hr/>
+<div>
     <?php
-      $upimage=0;
       foreach ($this->typeuploadss as $tyup){
           echo "<a href='".$this->baseUrl()."/materials/single/course_id/".$this->course_id."/id_type/".$this->id_type."/id_up/".$tyup['id_up']."'>"
                   . "<font size='5'>".$tyup['id_up']." :-  ".$tyup['contain_upload'].'</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(';
@@ -47,7 +44,7 @@
           
          
           if(($tyup['contain_upload'] == 'image') or($tyup['contain_upload'] == 'Image') ) { 
-              
+              $upimage=0;
             foreach ($this->typeimages as $tyimage){
                   if($tyimage['mat_image'] != NULL){
                       $upimage+=1;
@@ -73,22 +70,12 @@
       echo "<br/><br/><a href='".$this->baseUrl()."/typeuploads/addtypeup/course_id/".$this->course_id."/id_type/".$this->id_type."'>"
         . " <button>Add New Upload Materials</button> </a> <br/><br/>";
   ?>  
-</td>
-<tr>
-<td >
-  <font color="red" size="5">Total Upload/Download</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</td>
-<td>
- <?php
- if($upimage != 0){
-  $totalupload=$upimage;
-}else{
-  $totalupload=0;
-}
+</div>
 
-echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$totalupload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/up.png'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->totaldownload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/>";
+
+<hr/>
+ <?php
+$totalupload=0;
+echo "<font color='red' size='5'>Total Upload/Download</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$totalupload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/up.png'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->totaldownload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/>";
 ?>
-</td>
-</tr>
-</table>
   <hr/>

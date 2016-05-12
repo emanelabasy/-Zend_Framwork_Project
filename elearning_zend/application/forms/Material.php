@@ -8,9 +8,9 @@ class Application_Form_Material extends Zend_Form
         /* Form Elements & Other Definitions Here ... */
 
                 $mat_video = new Zend_Form_Element_File('mat_video');
-		$mat_video->setLabel('Video Material :');
-//		$mat_video->setDestination('/var/www/html/zend_project/-Zend_Framwork_Project/elearning_zend/public/videos');
-                $mat_video->addValidator('extension', true, array('mp4','avi','mkv','flv'));
+		  $mat_video->setLabel('Video Material :');
+		$mat_video->setDestination(APPLICATION_PATH.'/../public/videos');
+                $mat_video->addValidator('extension', true, array('mp4','avi','mkv','flv','MP3'));
                 $desc_video = new Zend_Form_Element_Textarea('desc_video');
                 $desc_video->setLabel('desc_video');
 //                $desc_video->setRequired();
@@ -18,7 +18,7 @@ class Application_Form_Material extends Zend_Form
                                 
 		$mat_image = new Zend_Form_Element_File('mat_image');
 		$mat_image->setLabel('Image Material :');
-		$mat_image->setDestination('/var/www/html/zend_project/-Zend_Framwork_Project/elearning_zend/public/images/materials');
+		$mat_image->setDestination(APPLICATION_PATH.'/../public/images/materials');
 		//$mat_image->setRequired();
                 $mat_image->addValidator('extension', true, array('gif','jpg','png','jpeg'));
                 $desc_image = new Zend_Form_Element_Textarea('desc_image');
@@ -28,8 +28,8 @@ class Application_Form_Material extends Zend_Form
                 
                 $mat_word = new Zend_Form_Element_File('mat_word');
 		$mat_word->setLabel('Word Material :');
-//		$mat_word->setDestination('/var/www/html/zend_project/-Zend_Framwork_Project/elearning_zend/public/words');
-                $mat_word->addValidator('extension', true, array('docx','docx'));
+		$mat_word->setDestination(APPLICATION_PATH.'/../public/Words');
+                $mat_word->addValidator('extension', true, array('doc','docx'));
                 $desc_image->setAttrib('class', 'form-control');
                 
                 $desc_word = new Zend_Form_Element_Textarea('desc_word');
@@ -40,7 +40,7 @@ class Application_Form_Material extends Zend_Form
                 
                 $mat_pdf = new Zend_Form_Element_File('mat_pdf');
 		$mat_pdf->setLabel('PDF Material :');
-		$mat_pdf->setDestination('/var/www/html/zend_project/-Zend_Framwork_Project/elearning_zend/public/pdfs');
+		$mat_pdf->setDestination(APPLICATION_PATH.'/../public/pdfs');
                 $mat_pdf->addValidator('extension', true, array('pdf'));
                 $desc_pdf = new Zend_Form_Element_Textarea('desc_pdf');
                 $desc_pdf->setLabel('desc_pdf');
@@ -50,7 +50,7 @@ class Application_Form_Material extends Zend_Form
                 
                 $mat_ppt = new Zend_Form_Element_File('mat_ppt');
 		$mat_ppt->setLabel('PPT Material :');
-//		$mat_ppt->setDestination('/var/www/html/zend_project/-Zend_Framwork_Project/elearning_zend/public/ppts');
+		$mat_ppt->setDestination(APPLICATION_PATH.'/../public/ppts');
                 $mat_ppt->addValidator('extension', true, array('ppt','pptx'));
                 $desc_ppt = new Zend_Form_Element_Textarea('desc_ppt');
                 $desc_ppt->setLabel('desc_ppt');

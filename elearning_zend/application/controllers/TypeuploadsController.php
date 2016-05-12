@@ -26,6 +26,7 @@ class TypeuploadsController extends Zend_Controller_Action
             if($form->isValid($this->getRequest()->getParams())){
             $data = $form->getValues();
             array_push($data,$id_type);
+            array_push($data,$course_id);
             if ($this->model->addTypeupload($data))
                $this->redirect('materials/single/course_id/'.$course_id.'/id_type/'.$id_type);
 
