@@ -206,7 +206,9 @@
 			<div class="content">
 				         
                 <?php
-                    echo $this->form;
+                    // echo $this->content;
+                    // echo $this->form;
+                echo $this->layout()->content;
                 ?>           
                             
 			</div>
@@ -247,7 +249,6 @@
 										 <li id="menu-academico" ><a href='#'><i class="fa fa-table"></i> <span> Categories</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										 <!-- // All Courses -->
 										   <ul id="menu-academico-sub" >
-										   <li id="menu-academico-avaliacoes" ><a href='<?php echo $this->baseUrl()."/cateogry/index"?>'><i class="lnr lnr-layers"></i>All Categories</a></li>
 
 											<li id="menu-academico-avaliacoes" ><a href='<?php echo $this->baseUrl()."/cateogry/add"?>'><i class="lnr lnr-pencil"></i>New Category </a></li>
 
@@ -260,7 +261,6 @@
 										 <li id="menu-academico" ><a href='#'><i class="fa fa-table"></i> <span> Courses</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										 <!-- // All Courses -->
 										   <ul id="menu-academico-sub" >
-										   <li id="menu-academico-avaliacoes" ><a href='<?php echo $this->baseUrl()."/course/index"?>'><i class="lnr lnr-layers"></i>All Courses</a></li>
 
 											<li id="menu-academico-avaliacoes" ><a href='<?php echo $this->baseUrl()."/course/add"?>'> <i class="lnr lnr-pencil"></i> New Course </a></li>
 
@@ -278,7 +278,7 @@
 
 										<li><a href="#"><i class="lnr lnr-chart-bars"></i> <span>Statistics</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 										  <ul>
-											<li><a href='<?php echo $this->baseUrl()."/course/index"?>'><i class="lnr lnr-chart-bars"></i> No Of Users</a></li>
+											<li><a href='<?php echo $this->baseUrl()."/admin/count"?>'><i class="lnr lnr-chart-bars"></i> No Of Users</a></li>
 											<li><a href='<?php echo $this->baseUrl()."/course/index"?>'><i class="lnr lnr-chart-bars"></i>No Of Downloads</a></li>
 											<li><a href='<?php echo $this->baseUrl()."/course/index"?>'> <i class="lnr lnr-chart-bars"></i>No Of Requests</a></li>
 										</ul>

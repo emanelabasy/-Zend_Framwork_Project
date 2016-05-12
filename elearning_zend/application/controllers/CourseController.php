@@ -3,11 +3,12 @@
 class CourseController extends Zend_Controller_Action
 {
 
-	private $model;
+	private $model ,$user;
     public function init()
     {
         /* Initialize action controller here */
         $this->model = new Application_Model_DbTable_Course();
+        $this->user = new Application_Model_DbTable_Users();
     }
 
     public function indexAction()
@@ -34,11 +35,14 @@ class CourseController extends Zend_Controller_Action
             $identity = $auth->getIdentity(); 
             $user_id = $identity->id_user;
             // echo $user_id;
+             $id = $this->getRequest()->getParam('id');
 
+            $admin_user  = $this->user->getUserById($user_id);
+            // var_dump($admin_user[0]['type']);die;
+            if($admin_user[0]['type'] == '1'){
+        
     	   	$form= new Application_Form_Course();
-
-            $id = $this->getRequest()->getParam('id');
-            // $form->removeElement('cimage');
+           
 	        if($this->getRequest()->isPost()) {
 	            if ($form->isValid($this->getRequest()->getParams())) {
 	                $course_data=$form->getValues();
@@ -53,6 +57,9 @@ class CourseController extends Zend_Controller_Action
             $layout->setLayout('admin-layout');
 
 	        $this->view->form = $form;
+        }else{
+            $this->redirect("cateogry/index");
+        }
         }else{
             $this->redirect("users/login");
         }
@@ -74,10 +81,18 @@ class CourseController extends Zend_Controller_Action
         if($auth->hasIdentity()){
             $identity = $auth->getIdentity(); 
             $user_id = $identity->id_user;
+            $admin_user  = $this->user->getUserById($user_id);
+            $this->view->admin_user = $admin_user;
+            // var_dump($admin_user[0]['type']);die;
+            if($admin_user[0]['type'] == '1'){
+        
 
-            $id = $this->getRequest()->getParam('id_cours');
-            if($this->model->deleteCourse($id))
-                $this->redirect('course/index');
+                $id = $this->getRequest()->getParam('id_cours');
+                if($this->model->deleteCourse($id))
+                    $this->redirect('course/index');
+             }else{
+                $this->redirect("cateogry/index");
+            }
         }else{
             $this->redirect("users/login");
         }
@@ -91,28 +106,96 @@ class CourseController extends Zend_Controller_Action
         if($auth->hasIdentity()){
             $identity = $auth->getIdentity(); 
             $user_id = $identity->id_user;
+            $type = $identity->type;
 
-            $id = $this->getRequest()->getParam('id_cours');
-            $course = $this->model->getCourseById($id);
-            $form = new Application_Form_Course();
+            //check if logged in user is Admin 
+            $admin_user  = $this->user->getUserById($user_id);
+            if($type == 1){
+                // var_dump($admin_user);die;
+                $id = $this->getRequest()->getParam('id_cours');
+                $course = $this->model->getCourseById($id);
+                $form = new Application_Form_Course();
 
-            $form->populate($course[0]);
-            //$values = $this->getRequest()->getParams();
-            if($this->getRequest()->isPost()){
-                if($form->isValid($this->getRequest()->getParams())){
-                    $data = $form->getValues();
-                    $data['id_cours'] = $id;
-                    // var_dump($data);die;
-                    $this->model->addCourse($data);
-                    $this->redirect('course/'); 
-                }   
+                $form->populate($course[0]);
+                //$values = $this->getRequest()->getParams();
+                if($this->getRequest()->isPost()){
+                    if($form->isValid($this->getRequest()->getParams())){
+                        $data = $form->getValues();
+                        $data['id_cours'] = $id;
+                        // var_dump($data);die;
+                        $this->model->addCourse($data);
+                        $this->redirect('course/'); 
+                    }   
+                }
+            
+                $this->view->form = $form;
+                $this->render('add');
+
+            }else{
+                $this->redirect('cateogry/index');
             }
-        
-        $this->view->form = $form;
-        $this->render('add');
         }else{
             $this->redirect("users/login");
         }
     }
 
+    // function twitterAction(){
+
+    //     //share Course on twitter //
+
+        // $auth = Zend_Auth::getInstance();
+        // if($auth->hasIdentity()){
+        //     $identity = $auth->getIdentity(); 
+        //     $user_id = $identity->id_user;
+
+            // $config = array(
+            //     'callbackUrl' => $this->baseUrl().'course/twitter',
+            //     'siteUrl' => 'http://twitter.com/oauth',
+            //     'consumerKey' => 'gg3DsFTW9OU9eWPnbuPzQ',
+            //     'consumerSecret' => 'tFB0fyWLSMf74lkEu9FTyoHXcazOWpbrAjTCCK48A'
+            // );
+            // $consumer = new Zend_Oauth_Consumer($config);
+             
+            // // fetch a request token
+            // $token = $consumer->getRequestToken();
+
+
+
+
+        // }
+    // }
+
+
+    function mailAction(){
+
+        $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com');
+        // Zend_Mail::setDefaultTransport($tr);
+
+
+        $protocol = new Zend_Mail_Protocol_Smtp('smtp.gmail.com');
+        $protocol->connect();
+        $protocol->helo('shrouk.passiony@gmail.com');
+
+        $tr->setConnection($protocol);
+        
+
+        $mail = new Zend_Mail();
+        $email->host = "smtp.gmail.com";
+        $email->ssl = 'TLS';
+        $email->smtp_auth = "true";
+        $email->username = "shrouk.passiony@gmail.com";
+        $email->password = "shemo1012";
+        $email->smtpport = "465";
+        $email->secure = "SSL";
+        $email->ack = "false";
+        $mail->setBodyText('This is the text of the mail.');
+        $mail->setFrom('shrouk.passiony@gmail.com');
+        $mail->addTo('osamasabry14@gmail.com');
+        $mail->setSubject('welcome to our website ');
+        $mail->send();
+
+        $protocol->quit();
+        $protocol->disconnect();
+
+    }
 }

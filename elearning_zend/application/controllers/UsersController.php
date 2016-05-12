@@ -100,7 +100,7 @@ class UsersController extends Zend_Controller_Action
                 $auth = Zend_Auth::getInstance();
                 $storage = $auth->getStorage();
                 $storage->write($adapter->getResultRowObject(array('username',
-                    'id_user')));
+                    'id_user','type')));
                 $this->_redirect('cateogry/index');
             }
             

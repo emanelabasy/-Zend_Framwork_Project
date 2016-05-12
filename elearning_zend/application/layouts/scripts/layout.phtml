@@ -20,7 +20,8 @@
 	                if($auth->hasIdentity()){
 	                    
 	                    $identity = $auth->getIdentity(); 
-	                    // $id = $identity->id;
+	                    $id = $identity->id_user;
+	                    $type = $identity->type;
 	                    $username = $identity->username;
 	                    echo "Welcome ".$username;
 	                
@@ -36,20 +37,16 @@
                 ?>
 			</li> -->
 			<li>
-				<?php 
-                	echo "<a href='".$this->baseUrl()."/users/profile'> Profile </a>";  
-                ?>
-			</li>
-                        
-                        <li>
-				<?php 
-                	echo "<a href='".$this->baseUrl()."/requests/add'> Add Request </a>";  
+				<?php
+				// echo $this->admin_user[0]['type'];
+					if($type == 1){
+						echo "<a href='".$this->baseUrl()."/admin/index'> Control Panel </a>";
+					}
                 ?>
 			</li>
 			<li>
-				<?php
-
-                    echo "<a href='".$this->baseUrl()."/admin/index'> Control Panel </a>";
+				<?php 
+                	echo "<a href='".$this->baseUrl()."/users/profile'> Profile </a>";  
                 ?>
 			</li>
 			<li>

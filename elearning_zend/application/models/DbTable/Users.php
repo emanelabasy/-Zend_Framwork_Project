@@ -43,6 +43,11 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 		return $row->save();
 	}
 
+	// Count website users by osama ...
+	function countUsers(){
+		$result = $this->fetchAll()->toArray();
+		return count($result);
+	}
 
 }
 

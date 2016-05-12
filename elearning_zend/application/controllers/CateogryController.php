@@ -18,8 +18,8 @@ class CateogryController extends Zend_Controller_Action
             $user_id = $identity->id_user;
             $form= new Application_Form_Cateogry();
             $this->view->cateogries = $this->Category->listCategories();
-            $layout = $this->_helper->layout();
-            $layout->setLayout('admin-layout');
+            // $layout = $this->_helper->layout();
+            // $layout->setLayout('admin-layout');
             $this->view->form = $form;
             
 
