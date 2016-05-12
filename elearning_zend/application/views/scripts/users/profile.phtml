@@ -3,7 +3,7 @@
 
 <?php
 	foreach ($this->users as $user){
-	echo "<img src='".$this->baseUrl()."/images/profile/".$user['image']."'/>";
+	echo "<img src='".$this->baseUrl()."/images/profile/".$user['image']."'/><br/>";
 	echo "<label> Username: </label>".$user['username'].'<br /> <br />';
 	echo "<label> Email: </label>".$user['email'].'<br /> <br />';
 	echo "<label> Password: </label>".$user['password'].'<br /> <br />';

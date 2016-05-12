@@ -72,6 +72,14 @@ class MaterialsController extends Zend_Controller_Action
 
     
     public function singleAction(){
+         $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $type = $identity->type;
+            $this->view->type = $type;
+
+
         $ids = $this->getRequest()->getParams();
         $id_type=$ids['id_type'];
         $course_id=$ids['course_id'];
@@ -80,6 +88,14 @@ class MaterialsController extends Zend_Controller_Action
         
         $course=new Application_Model_DbTable_Course();
         $this->view->course = $course->getCourseById($course_id);
+
+
+         ////////// number of course views by shrouk
+        $num = $course->addViewsCourse($course_id);
+        $this->view->course_num_views = $course->numViewsCourse($course_id);
+        
+        ///////// end num of views on courses
+
         
        $typematerialss= new Application_Model_DbTable_Typematerials();
        $this->view-> typematerials= $typematerialss->listTypematerials();
@@ -121,6 +137,7 @@ class MaterialsController extends Zend_Controller_Action
         }else{
             $this->view-> totaldownload=0;
         }
+    }
 //        var_dump($totaldownload);die();
        $this->view-> typeimages= $this->model->imageMaterialById($course_id,$id_type);
        $this->view-> typevides= $this->model->videoMaterialById($id_type,$course_id);
@@ -140,8 +157,22 @@ public function showsingleAction(){
         $this->view->id_type=$id_type;
         $this->view->course_id=$course_id;
         $this->view->id_mat=$id_mat;
-        
         $this->view-> showmaterial= $this->model->getMaterialById($id_mat);
+
+        
+
+        // $obj=new Application_Model_DbTable_Comments();
+        $form = new Application_Form_Addcomment();
+        // $form->populate($user[0]);
+    //     if($this->getRequest()->isPost()){
+    //         if($form->isValid($this->getRequest()->getParams())){
+    //         $data = $form->getValues();
+    //         $this->model->updateuser($data,$id);
+    //         $this->redirect("users/profile");
+    //         }
+    //         $this->redirect('materials/single/course_id/'.$course_id.'/id_type/'.$id_type.'/id_mat/'.$id_mat);
+    // }
+    $this->view->form = $form;
 
     }
     

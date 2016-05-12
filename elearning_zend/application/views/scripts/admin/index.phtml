@@ -1,8 +1,8 @@
 <?php
        
        $req=$this->countrequest; 
-  $core=0;
-  $matr=0;
+      $core=0;
+      $matr=0;
        foreach ($req as $key => $value) {
            
            if ($req[$key]['Type_course']==0) {
@@ -14,8 +14,9 @@
            }
     
 }
-        
+                echo "Number of Users in System : $this->num_users</br>";
+
         echo "<lable style= 'margin-left:300px; color:red;'> number of Corse is :$core</lable></br>";
         echo "number of Matriels is :".$matr."</br>";
-        
+
 ?>

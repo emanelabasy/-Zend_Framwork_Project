@@ -16,8 +16,12 @@ class AdminController extends Zend_Controller_Action
             $user_id = $identity->id_user; 
             $type = $identity->type;
             if($type == 1){
+
+                $user = new Application_Model_DbTable_Users();
+                $this->view->num_users = $user->countUsers();
                 $layout = $this->_helper->layout();
                 $layout->setLayout('admin-layout');
+
             }
             else{
                 $this->redirect("cateogry/index");
@@ -27,9 +31,7 @@ class AdminController extends Zend_Controller_Action
         }
     }
     
-    
-    
-     public function countAction()
+    public function countAction()
     {
         $auth = Zend_Auth::getInstance();
             if($auth->hasIdentity()){
@@ -39,8 +41,8 @@ class AdminController extends Zend_Controller_Action
             if($type == 1){
                 $model = new Application_Model_DbTable_Requests();
                $this->view->countrequest = $model->countRequest();
-    //        $layout = $this->_helper->layout();
-    //        $layout->setLayout('admin-layout');
+           $layout = $this->_helper->layout();
+           $layout->setLayout('admin-layout');
                 $this->render('index');
             }else{
                 $this->redirect("cateogry/index");

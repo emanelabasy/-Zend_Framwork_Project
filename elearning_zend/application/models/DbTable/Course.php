@@ -12,9 +12,13 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 	if ($data['id_cours'] != "" )
 		{
 			$course = $this->fetchRow($this->select()->where('id_cours='.$data['id_cours']));
+			$cat_id = $course->id_cato;
+			$course->id_cato = $cat_id;
 		}
 		else{
 			$course = $this->createRow();
+			$course->num_view = 0;
+			$course->id_cato = $data['category_id'];
 		}
 
 		$course->course = $data['course'];
@@ -28,8 +32,8 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 		}
 		
 		$course->cours_desc = $data['cours_desc'];
-		$course->id_cato = $data['category_id'];
 		$course->id_user = $user_id;
+		
 
 		return $course->save();
 	}
@@ -40,6 +44,19 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 	
 	function deleteCourse($id){
 		return $this->delete('id_cours='.$id);
+	}
+
+	function addViewsCourse($id){
+		$course = $this->fetchRow($this->select()->where('id_cours='.$id));
+		// var_dump($course[0]); die;
+		$course->num_view += 1;
+		// echo $course[0]['num_view']; die;
+		return $course->save();
+	}
+
+	function numViewsCourse($id){
+		$course = $this->fetchRow($this->select()->where('id_cours='.$id));
+		return $course->num_view;
 	}
 
 }

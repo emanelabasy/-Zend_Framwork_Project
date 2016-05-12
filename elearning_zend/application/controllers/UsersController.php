@@ -13,7 +13,22 @@ class UsersController extends Zend_Controller_Action
     public function indexAction()
     {
     #osama will redirect here
-        $this->view->users = $this->model->listUsers();
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $type = $identity->type;
+
+            if($type == 1){
+                $layout = $this->_helper->layout();
+                $layout->setLayout('admin-layout');
+                $this->view->users = $this->model->listUsers();
+            }else{
+                $this->_redirect('cateogry/index');
+            }
+        }else{
+            $this->_redirect('users/login');
+        }
 
     }
 
@@ -43,6 +58,7 @@ class UsersController extends Zend_Controller_Action
         if($form->isValid($this->getRequest()->getParams())){
         $data = $form->getValues();
         $this->model->updateuser($data,$id);
+        $this->redirect("users/profile");
         }
     }
     $this->view->form = $form;

@@ -34,21 +34,24 @@ class CourseController extends Zend_Controller_Action
         if($auth->hasIdentity()){
             $identity = $auth->getIdentity(); 
             $user_id = $identity->id_user;
+            $type = $identity->type;
+            $this->view->type = $type;
             // echo $user_id;
              $id = $this->getRequest()->getParam('id');
 
             $admin_user  = $this->user->getUserById($user_id);
             // var_dump($admin_user[0]['type']);die;
-            if($admin_user[0]['type'] == '1'){
+            if($type == 1){
         
     	   	$form= new Application_Form_Course();
            
 	        if($this->getRequest()->isPost()) {
 	            if ($form->isValid($this->getRequest()->getParams())) {
+                    $id = $this->getRequest()->getParam('category_id');
 	                $course_data=$form->getValues();
 	                if($this->model->addCourse($course_data,$user_id)){
 	                    
-	                    $this->redirect("course/index/id".$id);
+	                    $this->redirect("course/index/id/".$id);
 	                }
 	            }
 	        }
@@ -69,7 +72,7 @@ class CourseController extends Zend_Controller_Action
     {
     	//Get a single Course//
         $id = $this->getRequest()->getParam('course_id');
-        // $this->view->course = $this->model->getCourseById($id);
+        // $course = $this->model->numViewsCourse($id);
         $this->redirect('materials/single/course_id/'.$id.'/id_type/1');
 
     }
@@ -89,9 +92,9 @@ class CourseController extends Zend_Controller_Action
 
                 $id = $this->getRequest()->getParam('id_cours');
                 if($this->model->deleteCourse($id))
-                    $this->redirect('course/index');
+                    $this->redirect('/cateogry/index');
              }else{
-                $this->redirect("cateogry/index");
+                $this->redirect("/cateogry/index");
             }
         }else{
             $this->redirect("users/login");
@@ -115,7 +118,8 @@ class CourseController extends Zend_Controller_Action
                 $id = $this->getRequest()->getParam('id_cours');
                 $course = $this->model->getCourseById($id);
                 $form = new Application_Form_Course();
-
+                $form->getElement('cours_image')->setRequired(false);
+                $form->removeElement('category_id');
                 $form->populate($course[0]);
                 //$values = $this->getRequest()->getParams();
                 if($this->getRequest()->isPost()){
@@ -123,11 +127,13 @@ class CourseController extends Zend_Controller_Action
                         $data = $form->getValues();
                         $data['id_cours'] = $id;
                         // var_dump($data);die;
-                        $this->model->addCourse($data);
-                        $this->redirect('course/'); 
+                        $this->model->addCourse($data,$user_id);
+                        $this->redirect('materials/single/course_id/'.$id.'/id_type/1'); 
                     }   
                 }
-            
+                $layout = $this->_helper->layout();
+                $layout->setLayout('admin-layout');
+
                 $this->view->form = $form;
                 $this->render('add');
 
@@ -198,4 +204,15 @@ class CourseController extends Zend_Controller_Action
         $protocol->disconnect();
 
     }
+
+     public function viewsAction()
+    {
+        //Get a single Course//
+        $id = $this->getRequest()->getParam('course_id');
+        $num_views = $this->model->numViewsCourse($id);
+        echo $num_views;die;
+        $this->redirect('materials/single/course_id/'.$id.'/id_type/1');
+
+    }
+
 }

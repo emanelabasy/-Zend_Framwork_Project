@@ -16,6 +16,8 @@ class CateogryController extends Zend_Controller_Action
         if($auth->hasIdentity()){
             $identity = $auth->getIdentity(); 
             $user_id = $identity->id_user;
+            $type = $identity->type;
+            $this->view->type = $type;
             $form= new Application_Form_Cateogry();
             $this->view->cateogries = $this->Category->listCategories();
             // $layout = $this->_helper->layout();
@@ -34,7 +36,8 @@ class CateogryController extends Zend_Controller_Action
        $auth = Zend_Auth::getInstance();
         if($auth->hasIdentity()){
             $identity = $auth->getIdentity(); 
-            $user_id = $identity->id_user;           
+            $user_id = $identity->id_user;  
+
             $form = new Application_Form_Cateogry();
             if ($this->getRequest()->isPost()) {
                 if ($form->isValid($this->getRequest()->getParams())) {
@@ -100,6 +103,7 @@ class CateogryController extends Zend_Controller_Action
             $id = $this->getRequest()->getParam('id');
             $post = $this->Category->getCategoriesById($id);
             $form = new Application_Form_Cateogry();
+            $form->getElement('image')->setRequired(false);
             $form->populate($post[0]);
             //$values = $this->getRequest()->getParams();
             if ($this->getRequest()->isPost()) {
