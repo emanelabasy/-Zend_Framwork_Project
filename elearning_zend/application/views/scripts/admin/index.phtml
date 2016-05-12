@@ -1,5 +1,21 @@
 <?php
-
-	echo "Shrouk";
-
+       
+       $req=$this->countrequest; 
+  $core=0;
+  $matr=0;
+       foreach ($req as $key => $value) {
+           
+           if ($req[$key]['Type_course']==0) {
+               
+               $core++;
+           }   else{
+               
+               $matr++;
+           }
+    
+}
+        
+        echo "<lable style= 'margin-left:300px; color:red;'> number of Corse is :$core</lable></br>";
+        echo "number of Matriels is :".$matr."</br>";
+        
 ?>

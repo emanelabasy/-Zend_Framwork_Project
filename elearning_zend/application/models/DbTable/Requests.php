@@ -19,6 +19,15 @@ class Application_Model_DbTable_Requests extends Zend_Db_Table_Abstract
         $row->Type_course = $data['Type_course'];
         return $row->save();
 	}
+        
+        
+        function countRequest(){
+		
+            $request = $this->fetchAll($this->select('Type_course'));           
+            return $request;
+            
+            
+	}
 
 }
 

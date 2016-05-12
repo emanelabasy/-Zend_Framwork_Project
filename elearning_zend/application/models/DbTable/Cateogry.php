@@ -28,16 +28,32 @@ class Application_Model_DbTable_Cateogry extends Zend_Db_Table_Abstract
         {
             
             $row = $this->fetchRow($this->select()->where('id_cato='.$data['id_cato']));
+           
             
         }else{
             $row = $this->createRow();
 	}
         
-        $row->category = $data['category'];
-        $row->image = $data['image'];
+         if ($data['image']!="") {
+                
+            $row->image = $data['image'];
+        }else{
+            
+            $oldimage=$row['image'];
+            $row->image = $oldimage;
+        }
+        
+        $row->category = $data['category'];        
         $row->desc = $data['desc'];
         return $row->save();
 	}
+        
+//        function viewCategories(){
+//            
+//            $row->createRow();
+////            $row->;
+//        }
+        
 
 }
 
