@@ -92,6 +92,14 @@ class MaterialsController extends Zend_Controller_Action
 
     
     public function singleAction(){
+        //  add session check ---> by shrouk
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $type = $identity->type;
+            $this->view->type = $type;
+
         $ids = $this->getRequest()->getParams();
         $id_type=$ids['id_type'];
         $course_id=$ids['course_id'];
@@ -142,6 +150,7 @@ class MaterialsController extends Zend_Controller_Action
         $this->view-> totaldownload=$totaldownload;
         }else{
             $this->view-> totaldownload=0;
+        }
         }
 //        var_dump($totaldownload);die();
        $this->view-> typeimages= $this->model->imageMaterialById($course_id,$id_type);

@@ -16,12 +16,17 @@ class RequestsController extends Zend_Controller_Action
        $auth = Zend_Auth::getInstance();
         if($auth->hasIdentity()){
             $identity = $auth->getIdentity(); 
-            $user_id = $identity->id_user;   
-            $this->view->request = $this->request->listRequest();
-//            $layout = $this->_helper->layout();
-//            $layout->setLayout('admin-layout'); 
-            
-            
+            $user_id = $identity->id_user;  
+            $type = $identity->type;
+
+            if($type == 1){
+                 
+              $this->view->request = $this->request->listRequest();
+             $layout = $this->_helper->layout();
+             $layout->setLayout('admin-layout'); 
+            }else{
+              $this->redirect("cateogry/index");
+         }    
         }else{
             
              $this->redirect("users/login");

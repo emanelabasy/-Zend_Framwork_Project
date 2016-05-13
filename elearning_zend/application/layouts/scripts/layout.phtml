@@ -4,12 +4,13 @@
 <?php echo $this->headMeta(); ?>
 <?php echo $this->headTitle(); ?>
 <?php echo $this->headLink(); ?>
+
 </head>
 <body>
 <div class="wrap">
 <div class="wrapper">
 <div class="logo">
-	<a href="<?php $this->baseUrl()."/users/index"?>"><h1>SLMS</h1></a>
+	<a href="<?php echo $this->baseUrl()."/users/index"?>"><h1>SLMS</h1></a>
 </div>
 <div class="header_right">
 	<div class="cssmenu">
@@ -22,6 +23,8 @@
 	                    $identity = $auth->getIdentity(); 
 	                    $id = $identity->id_user;
 	                    $type = $identity->type;
+	                    $ban_user = $identity->ban_user;
+	                    if($ban_user == 1){
 	                    $username = $identity->username;
 	                    echo "Welcome ".$username;
 	                
@@ -51,20 +54,35 @@
 			</li>
 
 
-			<li>
+			<li class="has-sub">
 				<?php 
                 	echo "<a href='".$this->baseUrl()."/Requests/add'> Add Request </a>";  
                 ?>
 			</li>
 
 
-			<li>
+			<li class="last">
 				<?php
                     echo "<a href='".$this->baseUrl()."/users/logout'> Log Out </a>";
                 ?>
 			</li>
 			<?php
-                }
+					//if user account is deactive show only sign in and sign up ---> shrouk
+                	}else{
+                		?>
+						<li class="has-sub">
+							<?php
+			                    echo "<a href='".$this->baseUrl()."/users/login'> Sign In </a>";
+			                ?>
+						</li>
+						<li class="last">
+							<?php
+			                    echo "<a href='".$this->baseUrl()."/users/add'> Sign Up </a>";
+			                ?>
+						</li>
+						<?php
+                	}	
+            	}
                 else{
             ?>
 			<li class="has-sub">
@@ -89,9 +107,9 @@
 </div>
 <div class="fluid_container">
    <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
-          <div data-src="images/slider1.jpg"> </div>
-            <div data-src="images/slider2.jpg"> </div>
-            <div  data-src="images/slider3.jpg"> </div>
+          <div data-src='../images/slider1.jpg'> </div>
+            <div data-src='../images/slider2.jpg'> </div>
+            <div  data-src='../images/slider3.jpg'> </div>
   </div>
 </div>
 	<div class="clear"></div>

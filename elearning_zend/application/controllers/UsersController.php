@@ -15,9 +15,13 @@ class UsersController extends Zend_Controller_Action
     #osama will redirect here
         $auth = Zend_Auth::getInstance();
         if($auth->hasIdentity()){
-            $identity = $auth->getIdentity(); 
-            $user_id = $identity->id_user;
+            $identity = $auth->getIdentity();
+            $user_id = $identity->id_user; 
+            $this->view->user_id = $user_id;
+            $username = $identity->username;
+            $this->view->username =$username;
             $type = $identity->type;
+            $this->view->type = $type;
 
             if($type == 1){
                 $layout = $this->_helper->layout();
@@ -68,11 +72,6 @@ class UsersController extends Zend_Controller_Action
         $this->_redirect('users/login');
     }
 
-    
-
-    
-    
-
 }
     public function addAction()
     {
@@ -110,19 +109,29 @@ class UsersController extends Zend_Controller_Action
  
             $auth   = Zend_Auth::getInstance();
             $result = $auth->authenticate($adapter);
- 
+                
             if ($result->isValid())
             {
-                $auth = Zend_Auth::getInstance();
-                $storage = $auth->getStorage();
-                $storage->write($adapter->getResultRowObject(array('username',
-                    'id_user','type')));
-                $this->_redirect('cateogry/index');
+                // check if user account activate ---> by shrouk
+                $username = $form->getValue('username');
+                $user = $this->model->getUserByUsername($username);
+                // var_dump($user['ban_user']);die;
+                if($user['ban_user'] == 1){
+                    $auth = Zend_Auth::getInstance();
+                    $storage = $auth->getStorage();
+
+                    $storage->write($adapter->getResultRowObject(array('username',
+                        'id_user','type','ban_user')));
+                    $this->_redirect('cateogry/index');    
+                }else{
+                    $this->_redirect('users/deactive');   
+                }
+                // end of check if user account activate ---> by shrouk
             }
             
-                else {
+            else {
 
-                $this->_redirect('users/login');
+            $this->_redirect('users/login');
             }
         }
        
@@ -138,7 +147,119 @@ class UsersController extends Zend_Controller_Action
         
     }
 
+
+    // ban and activate user from log in system and ---> by shrouk
+    // 3 actions (banAction ,activateAction ,deactiveAction) ---> by shrouk
+    function banAction(){
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $type = $identity->type;
+
+            $ban_user = $this->getRequest()->getParam('id');
+            if($type == 1){
+                $user = $this->model->banUser($ban_user);
+                $this->redirect('users/index');
+            }
+            else{
+                $this->_redirect('cateogry/index');
+            }
+        }
+        else{
+            $this->_redirect('users/login');
+        }
+    }
+
+    function activateAction(){
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $type = $identity->type;
+
+            $ban_user = $this->getRequest()->getParam('id');
+            if($type == 1){
+                $user = $this->model->activateUser($ban_user);
+                $this->redirect('users/index');
+            }
+            else{
+                $this->_redirect('cateogry/index');
+            }
+        }
+        else{
+            $this->_redirect('users/login');
+        }  
+    }
+
+    function deactiveAction(){
+
+    }
+
+    // make user as admin of system or remove this admin and list all system admins ---> by shrouk
+    // 3 actions (makeadminAction ,rmadminAction , ) ---> by shrouk
+    function makeadminAction(){
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $type = $identity->type;
+
+            $admin_user = $this->getRequest()->getParam('id');
+            if($type == 1){
+                $user = $this->model->makeAdminUser($admin_user);
+                $this->redirect('users/index');
+            }
+            else{
+                $this->_redirect('cateogry/index');
+            }
+        }
+        else{
+            $this->_redirect('users/login');
+        }  
+    }
+
+    function rmadminAction(){
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $type = $identity->type;
+
+            $admin_user = $this->getRequest()->getParam('id');
+            if($type == 1){
+                $user = $this->model->removeAdminUser($admin_user);
+                $this->redirect('users/alladmins');
+            }
+            else{
+                $this->_redirect('cateogry/index');
+            }
+        }
+        else{
+            $this->_redirect('users/login');
+        }  
+    }
+
+    function alladminsAction(){
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $type = $identity->type;
+            $username = $identity->username;
+
+            if($type == 1 ){
+                $layout = $this->_helper->layout();
+                $layout->setLayout('admin-layout');
+                $this->view->users = $this->model->allAdminUsers();
+                $this->render('index');
+            }else{
+                $this->_redirect('users/index');
+            }
+        }else{
+            $this->_redirect('users/login');
+        }
     }
 
 
-
+}

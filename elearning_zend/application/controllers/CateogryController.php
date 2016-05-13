@@ -39,6 +39,7 @@ class CateogryController extends Zend_Controller_Action
             $user_id = $identity->id_user;  
 
             $form = new Application_Form_Cateogry();
+            $form->setAttrib('class', 'col-md-9');
             if ($this->getRequest()->isPost()) {
                 if ($form->isValid($this->getRequest()->getParams())) {
                     $data = $form->getValues();

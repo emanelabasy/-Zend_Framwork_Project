@@ -44,7 +44,8 @@ class CourseController extends Zend_Controller_Action
             if($type == 1){
         
     	   	$form= new Application_Form_Course();
-           
+            $form->setAttrib('class', 'col-md-9');
+            
 	        if($this->getRequest()->isPost()) {
 	            if ($form->isValid($this->getRequest()->getParams())) {
                     $id = $this->getRequest()->getParam('category_id');

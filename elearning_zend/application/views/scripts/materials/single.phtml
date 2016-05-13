@@ -1,18 +1,20 @@
-
 <?php
 
 
 
-   echo "<br><br><br><br>";
-    if($this->type == 1){
-    echo "<a class='btn btn-info' style='background-color: rgb(191, 204, 41);' href='".$this->baseUrl()."/course/edit/id_cours/".$this->course[0]['id_cours']."'> Edit </a>  &nbsp<a class='btn btn-danger' style='background-color: rgb(191, 204, 41);' href='".$this->baseUrl()."/course/delete/id_cours/".$this->course[0]['id_cours']."'> Delete </a><br />";
-  }
-    echo "<h1><a href=".$this->baseUrl()."/course/single/course_id/".$this->course[0]['id_cours']." >".$this->course[0]['course'].'</a></h1><br />';
-    echo "<h1>Number of views : ".$this->course_num_views."</h1>";
-    echo "<br /><label> Course Image: </label><h3>";
-    echo "<br /><img src='".$this->baseUrl()."/images/courses/".$this->course[0]['cours_image']."'/>";
+   // echo "<br><br><br><br>";
     
-    echo "<br /><label> Course Description : </label><h3>".$this->course[0]['cours_desc'].'</h3><br /></div>';
+    echo "<h1 style='font-family: initial;font-style: italic;font-size: 50px;margin-bottom: 30px;text-align: left;color: rgb(177, 46, 49);'>".$this->course[0]['course'].'</h1><br />';
+
+    if($this->type == 1){
+      echo "<a class='btn btn-danger' style='float: right;margin-right: 120px;' href='".$this->baseUrl()."/course/delete/id_cours/".$this->course[0]['id_cours']."'> Delete </a>&nbsp<a class='btn btn-info' style='float: right;margin-right: 50px;' href='".$this->baseUrl()."/course/edit/id_cours/".$this->course[0]['id_cours']."'> Edit </a>  &nbsp<br />";
+    }
+
+    echo "<h1 style='margin-top: -50px;font-style: italic;color: rgb(177, 46, 49);'> Viewed By : ".$this->course_num_views."</h1>";
+    echo "<br /><label style='font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color: #66CCCC;'> Course Image: </label><h3>";
+    echo "<br /><img style='margin: 20px;' src='".$this->baseUrl()."/images/courses/".$this->course[0]['cours_image']."'/>";
+    
+    echo "<br /><label style='font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color: #66CCCC;'> Course Description : </label><h3 style='margin: 20px;font-size: 20px;'>".$this->course[0]['cours_desc'].'</h3><br /></div><br>';
 
 ?>
 <table>

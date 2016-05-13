@@ -7,7 +7,7 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 	
 
 	function listUsers(){
-		return $this->fetchAll()->toArray();
+		return $this->fetchAll($this->select()->where('type=0'))->toArray();
 	}
 	
 	function getUserById($id_user){
@@ -45,8 +45,53 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 
 	// Count website users by osama ...
 	function countUsers(){
-		$result = $this->fetchAll()->toArray();
+		$result =  $this->fetchAll($this->select()->where('type=0'))->toArray();
 		return count($result);
+	}
+        
+        function countAdmins(){
+		$result =  $this->fetchAll($this->select()->where('type=1 and username!="admin" and id_user!=1'))->toArray();
+		return count($result);
+	}
+
+
+	// ban and activate user from log in system and ---> by shrouk
+	// 3 functions (banUser ,activateUser ,getUserByUsername) ---> by shrouk
+	function banUser($id){
+		$user = $this->find($id);
+		// var_dump($user[0]['ban_user']);die;
+		$user[0]['ban_user'] = 0;
+		return $user[0]->save();
+	}	
+
+	function activateUser($id){
+		$user = $this->find($id);
+		$user[0]['ban_user'] = 1;
+		return $user[0]->save();
+	}
+
+	function getUserByUsername($username){
+		$user = $this->fetchRow($this->select()->where('username="'.$username.'"'));
+		// var_dump($user[0]['ban_user']);die;
+		return $user->toArray();
+	}
+
+	// make user as admin of system or remove this admin and list all system admins ---> by shrouk
+	// 3 functions (makeAdminUser ,removeAdminUser ,allAdminUsers ) ---> by shrouk
+	function makeAdminUser($id){
+		$user = $this->find($id);
+		$user[0]['type'] = 1;
+		return $user[0]->save();
+	}	
+
+	function removeAdminUser($id){
+		$user = $this->find($id);
+		$user[0]['type'] = 0;
+		return $user[0]->save();
+	}
+
+	function allAdminUsers(){
+		return $this->fetchAll($this->select()->where('type=1 and username!="admin" and id_user!=1'))->toArray();
 	}
 
 }

@@ -18,7 +18,9 @@ class AdminController extends Zend_Controller_Action
             if($type == 1){
 
                 $user = new Application_Model_DbTable_Users();
+                // $this->view->user = $user->getUserById($user_id);
                 $this->view->num_users = $user->countUsers();
+                $this->view->num_admins = $user->countAdmins();
                 $layout = $this->_helper->layout();
                 $layout->setLayout('admin-layout');
 
@@ -43,7 +45,7 @@ class AdminController extends Zend_Controller_Action
                $this->view->countrequest = $model->countRequest();
            $layout = $this->_helper->layout();
            $layout->setLayout('admin-layout');
-                $this->render('index');
+                // $this->render('index');
             }else{
                 $this->redirect("cateogry/index");
             }
@@ -54,23 +56,5 @@ class AdminController extends Zend_Controller_Action
             }
         
     }
-
-     public function goodaddAction(){
-        $auth = Zend_Auth::getInstance();
-            if($auth->hasIdentity()){
-            $identity = $auth->getIdentity(); 
-            $user_id = $identity->id_user; 
-            $type = $identity->type;
-            if($type == 1){
-                $layout = $this->_helper->layout();
-                $layout->setLayout('admin-layout');
-             } else{
-                
-                 $this->redirect("users/login");
-            }
-         }     
-    }
-
-
 }
 
