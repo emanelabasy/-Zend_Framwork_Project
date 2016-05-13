@@ -23,7 +23,7 @@ class Application_Model_DbTable_Typeuploads extends Zend_Db_Table_Abstract
         
         
         
-        function imagedownload($id_type,$course_id,$img){
+        function download($id_type,$course_id){
             $select=$this-> select()->from("typeuploads",'*')-> where('id_cours='.$course_id)-> where('id_type='.$id_type);
             return $this->fetchAll($select);
 	}
@@ -33,7 +33,7 @@ class Application_Model_DbTable_Typeuploads extends Zend_Db_Table_Abstract
 		return $this->update($upInfo,'id_up='.$id_up);
 	}
         
-        function updatedownimge($upInfo,$id_up){
+        function updatedown($upInfo,$id_up){
             return $this->update($upInfo,'id_up='.$id_up);
 	}
 

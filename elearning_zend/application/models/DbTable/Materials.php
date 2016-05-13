@@ -36,7 +36,7 @@ class Application_Model_DbTable_Materials extends Zend_Db_Table_Abstract
 	}
         
         function wordMaterialById($id_type,$id_cours){
-            $select=$this-> select()->from("materials",'mat_word')-> where('id_type='.$id_type)-> where('id_cours='.$id_cours);
+            $select=$this-> select()->from("materials",'*')-> where('id_type='.$id_type)-> where('id_cours='.$id_cours);
             return $this->fetchAll($select);
 	}
 
