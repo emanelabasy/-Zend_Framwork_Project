@@ -39,6 +39,13 @@
     color: blue;
     height: 45px;
 }
-.myBtn{
-    height: 55px;
+/* ************************************************************************** */
+.addmatform{
+    margin-right:200px;
+    margin-left: 160px;
+    background-color:#FBF1EE;
+    /* PaleGreen  LightPink*/
+}
+#addmat{
+    margin-right:400px;
 }

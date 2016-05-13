@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_addtypemat extends Zend_Form
+class Application_Form_edittypemat extends Zend_Form
 {
 
     public function init()
@@ -12,12 +12,6 @@ class Application_Form_addtypemat extends Zend_Form
 	$contain_type->setRequired();
     $contain_type->setAttrib('class', 'form-control');
 	$contain_type->setLabel('New Type Materials :');
-	$contain_type->addValidator(new Zend_Validate_Db_NoRecordExists(
-    array(
-        'table' => 'typematerials',
-        'field' => 'contain_type'
-    )
-	));
 	
  	$id_type = new Zend_Form_Element_Hidden('id_type');
         

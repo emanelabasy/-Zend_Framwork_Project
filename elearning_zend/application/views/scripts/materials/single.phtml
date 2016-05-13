@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -14,15 +15,10 @@
     echo "<br /><label> Course Description : </label><h3>".$this->course[0]['cours_desc'].'</h3><br /></div>';
 
 ?>
-
-<?php
-    echo "<a href='".$this->baseUrl()."/materials/addmaterial/course_id/".$this->course_id."/id_type/".$this->id_type."'><button>Add New Materials</button></a><br><hr/>";
-    
-
-?>
 <table>
 <tr>
-<td>
+<td bgcolor="">
+<div class="typemat">
     <?php
 	foreach ($this->typematerials as $tymat){
             echo "<a href='".$this->baseUrl()."/materials/single/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'><font size='5'>".$tymat['id_type']." :-  ".$tymat['contain_type'].'</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(';
@@ -30,13 +26,12 @@
               . " Edit </a> "."<a href='".$this->baseUrl()."/typematerials/delete/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'> Delete )</a> <br />";
 	}
         
-        echo "<a href='".$this->baseUrl()."/typematerials/addtypemat/course_id/".$this->course_id."/id_type/".$this->id_type."'>"
-          . " <button>Add New Type Materials</button> </a> <br/><br/>";
     ?>
-
+</div>
 </td>
 
-<td>
+<td bgcolor="">
+<div class="typeup">
     <?php
       $upimage=0;
       foreach ($this->typeuploadss as $tyup){
@@ -70,15 +65,15 @@
          echo "<br/><hr/>";
       }
 
-      echo "<br/><br/><a href='".$this->baseUrl()."/typeuploads/addtypeup/course_id/".$this->course_id."/id_type/".$this->id_type."'>"
-        . " <button>Add New Upload Materials</button> </a> <br/><br/>";
   ?>  
 </td>
+</div>
 <tr>
 <td >
   <font color="red" size="5">Total Upload/Download</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </td>
 <td>
+<div class="totalupload">
  <?php
  if($upimage != 0){
   $totalupload=$upimage;
@@ -88,6 +83,7 @@
 
 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$totalupload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/up.png'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->totaldownload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/>";
 ?>
+</div>
 </td>
 </tr>
 </table>

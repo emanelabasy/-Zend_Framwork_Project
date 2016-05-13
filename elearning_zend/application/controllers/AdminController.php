@@ -54,5 +54,23 @@ class AdminController extends Zend_Controller_Action
             }
         
     }
+
+     public function goodaddAction(){
+        $auth = Zend_Auth::getInstance();
+            if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user; 
+            $type = $identity->type;
+            if($type == 1){
+                $layout = $this->_helper->layout();
+                $layout->setLayout('admin-layout');
+             } else{
+                
+                 $this->redirect("users/login");
+            }
+         }     
+    }
+
+
 }
 

@@ -61,13 +61,14 @@ class Application_Model_DbTable_Materials extends Zend_Db_Table_Abstract
 		$row->desc_word=$matInfo['desc_word'];
 		$row->desc_ppt=$matInfo['desc_ppt'];
 		$row->desc_video=$matInfo['desc_video'];
-		$row->desc_image=$matInfo['desc_image'];
+		$row->desc_image=$matInfo['desc_image'];		
+        $row->id_cours=$matInfo['id_cours'];
+		$row->id_type = $matInfo['id_type']; 
+		$row->id_cato = $matInfo['id_cato'];        
+		$row->id_user=$matInfo[2];
         $row->lock=$matInfo[0];
 		$row->state=$matInfo[1];
-		$row->id_type = $matInfo[2];
-		$row->id_user=$matInfo[3];
-        $row->id_cours=$matInfo[4];
-        $row->no_users=$matInfo[5];
+        $row->no_users=$matInfo[3];
 //		$row->id_cato=$matInfo['id_cato'];
 
 		return $row->save();

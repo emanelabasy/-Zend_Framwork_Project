@@ -1,30 +1,16 @@
 <?php
 
-class Application_Form_Material extends Zend_Form
+class Application_Form_editmaterial extends Zend_Form
 {
 
     public function init()
     {
         /* Form Elements & Other Definitions Here ... */
 
-
-        $category = new Application_Model_DbTable_Cateogry();
-        $selectCategory = new Zend_Form_Element_Select('id_cato');
-        $selectCategory->addMultiOption(0,'Plz Select Category');
-        foreach ($category->fetchAll() as $cat) {
-            $selectCategory->addMultiOption($cat['id_cato'],$cat['category']);
-        }
-
         $course = new Application_Model_DbTable_Course();
         $selectCourse = new Zend_Form_Element_Select('id_cours');
         $selectCourse->addMultiOption(0,'Plz Select Course');
 
-        // $cat=1;
-        // $select=$course-> select()->from("courses",'course')-> where('id_cato='.$cat);
-        // foreach ($select as $k) {
-        //     var_dump($key['id_cours']);die();
-        // }
-       
         foreach ($course->fetchAll() as $cou) {
             $selectCourse->addMultiOption($cou['id_cours'],$cou['course']);
         }
@@ -93,7 +79,7 @@ class Application_Form_Material extends Zend_Form
 		$mat_download->setAttrib('class','btn btn-info');
 
 
-		$this->addElements(array($id_mat,$selectCategory,$selectCourse,$selecttype,$mat_image,$desc_image,$mat_video,$desc_video,$mat_word,$desc_word,$mat_pdf,$desc_pdf,$mat_ppt,$desc_ppt,$mat_download ));
+		$this->addElements(array($id_mat,$selectCourse,$selecttype,$mat_image,$desc_image,$mat_video,$desc_video,$mat_word,$desc_word,$mat_pdf,$desc_pdf,$mat_ppt,$desc_ppt,$mat_download ));
     }
 
 

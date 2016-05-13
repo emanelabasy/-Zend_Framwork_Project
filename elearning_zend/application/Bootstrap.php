@@ -23,6 +23,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         //admin
         // if($layout == 'admin-layout'){
 
+            $view->headLink()->appendStylesheet('/z/-Zend_Framwork_Project/elearning_zend/public/css/emy.css');
             $view->headLink()->appendStylesheet('/z/-Zend_Framwork_Project/elearning_zend/public/css/style1.css');
             $view->headLink()->appendStylesheet('/z/-Zend_Framwork_Project/elearning_zend/public/css/bootstrap.min1.css');
             $view->headLink()->appendStylesheet('/z/-Zend_Framwork_Project/elearning_zend/public/css/icon-font.min.css');
