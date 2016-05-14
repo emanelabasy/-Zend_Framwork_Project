@@ -60,7 +60,7 @@ class Application_Form_Material extends Zend_Form
                 
         $mat_word = new Zend_Form_Element_File('mat_word');
 		$mat_word->setLabel('Word Material :');
-        $mat_word->setDestination(APPLICATION_PATH.'/../public/Words');
+        $mat_word->setDestination(APPLICATION_PATH.'/../public/materials/worddown/Words');
         $mat_word->addValidator('extension', true, array('doc','docx'));        
         $desc_word = new Zend_Form_Element_Text('desc_word');
         $desc_word->setLabel('desc_word');
@@ -70,7 +70,7 @@ class Application_Form_Material extends Zend_Form
                 
         $mat_pdf = new Zend_Form_Element_File('mat_pdf');
 		$mat_pdf->setLabel('PDF Material :');
-		$mat_pdf->setDestination(APPLICATION_PATH.'/../public/pdfs');
+		$mat_pdf->setDestination(APPLICATION_PATH.'/../public/materials/pdfdown/pdfs');
         $mat_pdf->addValidator('extension', true, array('pdf'));
         $desc_pdf = new Zend_Form_Element_Text('desc_pdf');
         $desc_pdf->setLabel('desc_pdf');
@@ -80,7 +80,7 @@ class Application_Form_Material extends Zend_Form
                 
         $mat_ppt = new Zend_Form_Element_File('mat_ppt');
 		$mat_ppt->setLabel('PPT Material :');
-		$mat_ppt->setDestination(APPLICATION_PATH.'/../public/ppts');
+		$mat_ppt->setDestination(APPLICATION_PATH.'/../public/materials/pptdown/ppts');
         $mat_ppt->addValidator('extension', true, array('ppt','pptx'));
         $desc_ppt = new Zend_Form_Element_Text('desc_ppt');
         $desc_ppt->setLabel('desc_ppt');
@@ -89,7 +89,7 @@ class Application_Form_Material extends Zend_Form
                 
 		$id_mat = new Zend_Form_Element_Hidden('id_mat');
 
-		$mat_download = new Zend_Form_Element_Submit('Download Materials');
+		$mat_download = new Zend_Form_Element_Submit('UPload Materials');
 		$mat_download->setAttrib('class','btn btn-info');
 
 

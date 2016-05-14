@@ -15,7 +15,7 @@ class TypeuploadsController extends Zend_Controller_Action
      	$this->view->typeloads = $this->model->listTypeuploads();
 
     }
-    
+
     public function addtypeupAction(){
         $auth = Zend_Auth::getInstance();
         if($auth->hasIdentity()){
@@ -88,5 +88,99 @@ class TypeuploadsController extends Zend_Controller_Action
                 $this->redirect("users/login");
             }
        }     
+
+
+       function showAction(){
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $admin_user  = $this->user->getUserById($user_id);
+            // var_dump($admin_user[0]['type']);die;
+            if($admin_user[0]['type'] == '1'){
+                $ids = $this->getRequest()->getParams();
+                $id_type=$ids['id_type'];
+                $course_id=$ids['course_id'];
+                $id_up=$ids['id_up'];
+                $data['show']="show";
+                    if($this->model->updateTypeupload($data,$id_up))
+                     $this->redirect('materials/single/course_id/'.$course_id.'/id_type/'.$id_type);
+            }else{
+                $this->redirect("admin/index");
+            }
+        }else{
+                $this->redirect("users/login");
+            }
+       } 
+
+       function hiddenAction(){
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $admin_user  = $this->user->getUserById($user_id);
+            // var_dump($admin_user[0]['type']);die;
+            if($admin_user[0]['type'] == '1'){
+                $ids = $this->getRequest()->getParams();
+                $id_type=$ids['id_type'];
+                $course_id=$ids['course_id'];
+                $id_up=$ids['id_up'];
+                $data['show']="hidden";
+                    if($this->model->updateTypeupload($data,$id_up))
+                     $this->redirect('materials/single/course_id/'.$course_id.'/id_type/'.$id_type);
+            }else{
+                $this->redirect("admin/index");
+            }
+        }else{
+                $this->redirect("users/login");
+            }
+       } 
+
+       function lockAction(){
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $admin_user  = $this->user->getUserById($user_id);
+            // var_dump($admin_user[0]['type']);die;
+            if($admin_user[0]['type'] == '1'){
+                $ids = $this->getRequest()->getParams();
+                $id_type=$ids['id_type'];
+                $course_id=$ids['course_id'];
+                $id_up=$ids['id_up'];
+                $data['lock']="lock";
+                    if($this->model->updateTypeupload($data,$id_up))
+                     $this->redirect('materials/single/course_id/'.$course_id.'/id_type/'.$id_type);
+            }else{
+                $this->redirect("admin/index");
+            }
+        }else{
+                $this->redirect("users/login");
+            }
+       } 
+
+       function unlockAction(){
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $admin_user  = $this->user->getUserById($user_id);
+            // var_dump($admin_user[0]['type']);die;
+            if($admin_user[0]['type'] == '1'){
+                $ids = $this->getRequest()->getParams();
+                $id_type=$ids['id_type'];
+                $course_id=$ids['course_id'];
+                $id_up=$ids['id_up'];
+                $data['lock']="unlock";
+                    if($this->model->updateTypeupload($data,$id_up))
+                     $this->redirect('materials/single/course_id/'.$course_id.'/id_type/'.$id_type);
+            }else{
+                $this->redirect("admin/index");
+            }
+        }else{
+                $this->redirect("users/login");
+            }
+       }     
+
 }
 

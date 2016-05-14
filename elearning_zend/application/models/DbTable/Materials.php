@@ -35,7 +35,7 @@ class Application_Model_DbTable_Materials extends Zend_Db_Table_Abstract
             return $this->fetchAll($select);
 	}
         
-        function wordMaterialById($id_type,$id_cours){
+    function wordMaterialById($id_type,$id_cours){
             $select=$this-> select()->from("materials",'*')-> where('id_type='.$id_type)-> where('id_cours='.$id_cours);
             return $this->fetchAll($select);
 	}
@@ -49,6 +49,9 @@ class Application_Model_DbTable_Materials extends Zend_Db_Table_Abstract
 		return $this->delete('id_mat='.$id_mat);
 	}
 
+   function deleteMaterialimage($id_mat){
+            return $this-> delete()->from("materials",'mat_image')-> where('id_mat='.$id_mat);
+	}
 
 	function addMaterial($matInfo){
 		$row = $this->createRow();
@@ -64,20 +67,16 @@ class Application_Model_DbTable_Materials extends Zend_Db_Table_Abstract
 		$row->desc_image=$matInfo['desc_image'];		
         $row->id_cours=$matInfo['id_cours'];
 		$row->id_type = $matInfo['id_type']; 
-		$row->id_cato = $matInfo['id_cato'];        
-		$row->id_user=$matInfo[2];
-        $row->lock=$matInfo[0];
-		$row->state=$matInfo[1];
-        $row->no_users=$matInfo[3];
+		$row->id_user=$matInfo[0];
+        $row->no_users=$matInfo[1];
 //		$row->id_cato=$matInfo['id_cato'];
 
 		return $row->save();
 	}
-
-	// delete all materials related to course --> shrouk
+	
 	function getMaterialsByCourseId($id){
 		return $this->delete('id_cours='.$id);
 	}
-	
+
 }
 
