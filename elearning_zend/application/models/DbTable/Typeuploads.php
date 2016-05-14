@@ -48,8 +48,8 @@ class Application_Model_DbTable_Typeuploads extends Zend_Db_Table_Abstract
 		$row->contain_upload = $upInfo['contain_upload'];
         $row->id_type = $upInfo['id_type'];
         $row->id_cours = $upInfo['id_cours'];
-        $row->show = "show";
-        $row->lock ="lock";
+        $row->show = "hidden";
+        $row->lock ="unlock";
 //      $row->no_download = $upInfo['no_download'];
         $row->no_download = 0;
 

@@ -53,3 +53,16 @@
  margin-left: 672px;
 
 }
+.fpwivmessag{
+    margin-left: 200px;
+    color: #e10627;
+    font-weight: bold;
+    size: 50px;
+}
+.goodmessag{
+    margin-left: 300px;
+    color: green;
+    font-weight: bold;
+    size: 100px;
+
+}

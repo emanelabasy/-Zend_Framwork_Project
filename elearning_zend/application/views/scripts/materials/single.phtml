@@ -86,7 +86,7 @@
                 <img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/><br/>";
             
         }else {
-          echo "Sorry,Not Show Image ";
+          echo "<div class='fpwivmessag'><br/>Sorry,Not Show Image ???<br/></div> ";
         } 
       }
 
@@ -110,7 +110,7 @@
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->numdownvideo."</lable>
               <img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/><br/>";
              }else {
-                echo "Sorry,Not Show Video ";
+                echo "<div class='fpwivmessag'><br/>Sorry,Not Show Video ???<br/></div> ";
               } 
             }  
           if(($tyup['contain_upload'] == 'PDF') or($tyup['contain_upload'] == 'pdf') ) { 
@@ -137,7 +137,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->numdownpdf."</lable>
                 <img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/><br/>";
               }else {
-                echo "Sorry,Not Show PDF ";
+                echo "<div class='fpwivmessag'><br/>Sorry,Not Show PDF ???<br/></div> ";
               } 
             }           
           if(($tyup['contain_upload'] == 'Word') or($tyup['contain_upload'] == 'word') ) { 
@@ -155,7 +155,7 @@
                      if($this->admin=="admin" ){ 
                       echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/editpptpdfword/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyword['id_mat']."'>( Update</a>";
 
-                        echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyword['id_mat']."/id_up/".$tyup['id_up']."'>". "<font color='red'>( Delete )</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                        echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyword['id_mat']."/id_up/".$tyup['id_up']."'>". "<font color='red'> Delete </font>)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                        } 
                     }
                 }
@@ -163,7 +163,7 @@
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->numdownword."</lable>
               <img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/><br/>";
           }else {
-                echo "Sorry,Not Show Word ";
+                echo "<div class='fpwivmessag'><br/>Sorry,Not Show Word ???<br/></div> ";
               } 
           } 
           if(($tyup['contain_upload'] == 'PPT') or($tyup['contain_upload'] == 'ppt') ) { 
@@ -188,7 +188,7 @@
                 }
                  echo "<br/><br/><lable class='nnumdown'>".$upppt."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/up.png'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->numdownppt."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/><br/>";
           }else {
-                echo "Sorry,Not Show PPT ";
+                echo "<div class='fpwivmessag'><br/>Sorry,Not Show PPT ???<br/></div>";
               } 
           }           
           
