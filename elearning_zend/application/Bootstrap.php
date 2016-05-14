@@ -59,7 +59,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->headLink()->appendStylesheet($view->baseUrl().'/css/bootstrap.min.css');
         $view->headLink()->appendStylesheet($view->baseUrl().'/css/camera.css');
         $view->headLink()->appendStylesheet($view->baseUrl().'/css/style.css');
-        
+        $view->headLink()->appendStylesheet($view->baseUrl().'/css/s.css');
         
          
         // Set the initial JS to load:

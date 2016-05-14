@@ -11,7 +11,7 @@ class Application_Form_Register extends Zend_Form
         $email->setRequired();
         $email->setLabel('Email:');
         $email->addValidator(new Zend_Validate_EmailAddress);
-	    
+	       $email->setAttrib('class', 'form-control');
       $username=new Zend_Form_Element_Text('username');
       $username->setRequired();
       $username->setLabel('Username:');
@@ -21,12 +21,15 @@ class Application_Form_Register extends Zend_Form
         'field' => 'username'
        )
      ));
+      $username->setAttrib('class', 'form-control');
 	    $password = new Zend_Form_Element_Password('password');
 	    $password->setLabel('password:');
 	    $password->addValidator(new Zend_Validate_StringLength(array('min'=>5,'max'=>20)));
+      $password->setAttrib('class', 'form-control');
       $confirmPassword=new Zend_Form_Element_Password('confirmPassword');
       $confirmPassword->setLabel('confirm Password:');
       $confirmPassword->addValidator(new Zend_Validate_StringLength(array('min'=>5,'max'=>20)));
+      $confirmPassword->setAttrib('class', 'form-control');
       $options = array(
             "male" => "male",
             "female" => "female");
@@ -53,9 +56,12 @@ class Application_Form_Register extends Zend_Form
         'uk'=>'UK',
         'egy'=>'Egypt'
         ));
+       $country->setAttrib('class', 'form-control');
        $sign=new Zend_Form_Element_Text('signature');
        $sign->setLabel('Signature:');
+        $sign->setAttrib('class', 'form-control');
 	     $submit = new Zend_Form_Element_Submit('Register');
+        $submit->setAttrib('class', 'btn btn-info');
 	     $this->addElements(array($id,$email,$username,$password,$confirmPassword,$gender,$image,array($country),$sign,$submit));
 
     }

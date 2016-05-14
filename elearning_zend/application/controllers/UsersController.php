@@ -8,6 +8,16 @@ class UsersController extends Zend_Controller_Action
     public function init(){
         /* Initialize action controller here */
 		$this->model = new Application_Model_DbTable_Users();
+        require_once  '/var/www/html/z/-Zend_Framwork_Project/elearning_zend/library/Zend/Mail/Transport/Smtp.php';
+        $config = array(
+                         'ssl' => 'tls',
+                         'port'=>'587',
+                         'auth' => 'login',
+                         'username' => '',
+                         'password' => ''
+                      );
+        $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+        Zend_Mail::setDefaultTransport($transport);
     }
 
     public function indexAction()
@@ -89,6 +99,12 @@ class UsersController extends Zend_Controller_Action
                  {
                     print "Upload error";
                 }
+                $mail = new Zend_Mail();
+                 $mail->setBodyText('Hello You Register Successfully.');
+                 $mail->setFrom('', 'Some Sender');
+                $mail->addTo($data['email'],$data['username']);
+                $mail->setSubject('Registration Message');
+                $mail->send($transport);
            
                 if ($this->model->addUser($data))
                     $this->redirect('users/login');
