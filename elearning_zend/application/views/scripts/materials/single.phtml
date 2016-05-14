@@ -14,6 +14,7 @@
     echo "<br /><label style='font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color: #66CCCC;'> Course Description : </label><h3 style='margin: 20px;font-size: 20px;'>".$this->course[0]['cours_desc'].'</h3><br /></div><br>';
 
 ?>
+<div class="allcontain">
 <table>
 <tr>
 <td bgcolor="">
@@ -21,16 +22,16 @@
     <?php
 	foreach ($this->typematerials as $tymat){
               // ".$tymat['id_type']." :-  
-            echo "<a href='".$this->baseUrl()."/materials/single/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'><font size='5'>*&nbsp;&nbsp;".$tymat['contain_type'].':</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</a>';
+            echo "<br/><a href='".$this->baseUrl()."/materials/single/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'><label style='font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color:rgb(40, 110, 10);''>*&nbsp;&nbsp;".$tymat['contain_type'].':</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(</a>';
             echo "<a href='".$this->baseUrl()."/typematerials/edit/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'>"
-              . " Edit </a> "."<a href='".$this->baseUrl()."/typematerials/delete/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'> <font color='red'>Delete </font>)</a> <br />";
+              . " Edit </a> "."<a href='".$this->baseUrl()."/typematerials/delete/course_id/".$this->course_id."/id_type/".$tymat['id_type']."'> <font color='red'>Delete </font>)</a> <br/><br/><br/>";
 	}
         
     ?>
 </div>
 </td>
 
-<td bgcolor="">
+<td>
 <div class="typeup">
     <?php
       $upimage=0;
@@ -42,7 +43,7 @@
       foreach ($this->typeuploadss as $tyup){
         // ".$tyup['id_up']." :-  
           echo "<a href='".$this->baseUrl()."/materials/single/course_id/".$this->course_id."/id_type/".$this->id_type."/id_up/".$tyup['id_up']."'>"
-                  . "<font size='5'>#&nbsp;&nbsp;".$tyup['contain_upload'].'&nbsp;:-</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><br/>';
+                  . "<label style='font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color:rgb(40, 110, 10);''>#&nbsp;&nbsp;".$tyup['contain_upload'].'&nbsp;:-</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><br/><br/>';
 
            if($this->admin=="admin" ){        
               echo "(<a href='".$this->baseUrl()."/typeuploads/edit/course_id/".$this->course_id."/id_type/".$this->id_type."/id_up/".$tyup['id_up']."'>"
@@ -66,6 +67,7 @@
                 foreach ($this->typeimages as $tyimage){
                       if($tyimage['mat_image'] != NULL){
                           $upimage+=1;
+
                         if($tyup['lock']=="lock"){  
                             echo "<a href='".$this->baseUrl()."/materials/showsingle/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyimage['id_mat']."'>"
                                     . "<img  width='150' height='150' src='".$this->baseUrl()."/images/materials/".$tyimage['mat_image']."'/>"
@@ -76,9 +78,9 @@
                           }   
                         if($this->admin=="admin" ){
                             echo "<a href='".$this->baseUrl()."/materials/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyimage['id_mat']."/id_up/".$tyup['id_up']."'>"
-                                . "<font color='red'>( Delete )</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                                . "<font color='red'>( Delete )</font></a>";
                          } 
-                        echo "&nbsp;&nbsp;&nbsp;";       
+                        echo "&nbsp;&nbsp;";       
                       }
                   }
                    echo "<br/><br/><lable class='nnumdown'>".$upimage."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/up.png'/>
@@ -96,13 +98,13 @@
                     if($tyvideo['mat_video'] != NULL){
                         $upvideo+=1;
                         if($tyup['lock']=="lock"){ 
-                          echo "<a href='".$this->baseUrl()."/materials/showvideo/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyvideo['id_mat']."'><img  width='150' height='150' src='".$this->baseUrl()."/videos/video.jpg'/></a>";
+                          echo "<a href='".$this->baseUrl()."/materials/showvideo/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyvideo['id_mat']."'><img  width='150' height='150' src='".$this->baseUrl()."/videos/video.jpg'/></a>&nbsp;&nbsp;";
                          } else{
-                          echo "<img  width='150' height='150' src='".$this->baseUrl()."/videos/video.jpg'/></a>";
+                          echo "<img  width='150' height='150' src='".$this->baseUrl()."/videos/video.jpg'/></a>&nbsp;&nbsp;";
                          }
                       if($this->admin=="admin" ){
                           echo "<a href='".$this->baseUrl()."/materials/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyvideo['id_mat']."/id_up/".$tyup['id_up']."'>"
-                              . "<font color='red'>( Delete )</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                              . "<font color='red'>( Delete )</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                         }      
                     }
                 }
@@ -121,12 +123,12 @@
                          if($tyup['lock']=="lock"){ 
                             echo "<a href='".$this->baseUrl()."/materials/pdfdown/pdfs"."/".$typdf['mat_pdf']."'>".$typdf['mat_pdf']."</a>";
                         
-                        echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/pdfdowntest"."/course_id/".$this->course_id."/id_type/".$this->id_type."/".$typdf['mat_word']."'>(Download)</a>";
+                        echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/pdfdowntest"."/course_id/".$this->course_id."/id_type/".$this->id_type."/".$typdf['mat_word']."'>(Download)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                       }else{
-                        echo "<a href='#'>".$typdf['mat_pdf']."</a>";
+                        echo "<a href='#'>".$typdf['mat_pdf']."</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                       }
                       if($this->admin=="admin" ){
-                          echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/editpptpdfword/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$typdf['id_mat']."'>( Update</a>";
+                          echo "<a href='".$this->baseUrl()."/materials/editpptpdfword/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$typdf['id_mat']."'>( Update</a>";
 
                            echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$typdf['id_mat']."/id_up/".$tyup['id_up']."'>"
                                 . "<font color='red'>Delete )</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -148,12 +150,12 @@
                         if($tyup['lock']=="lock"){                       
                           echo "<a href='".$this->baseUrl()."/materials/worddown/Words"."/".$tyword['mat_word']."'>".$tyword['mat_word']."</a>";
 
-                          echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/worddowntest"."/course_id/".$this->course_id."/id_type/".$this->id_type."/".$tyword['mat_word']."'>(Download )</a>";
+                          echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/worddowntest"."/course_id/".$this->course_id."/id_type/".$this->id_type."/".$tyword['mat_word']."'>(Download )</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                          }else{
-                          echo "<a href='#'>".$tyword['mat_word']."</a>";
+                          echo "<a href='#'>".$tyword['mat_word']."</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                          } 
                      if($this->admin=="admin" ){ 
-                      echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/editpptpdfword/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyword['id_mat']."'>( Update</a>";
+                      echo "<a href='".$this->baseUrl()."/materials/editpptpdfword/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyword['id_mat']."'>( Update</a>";
 
                         echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$tyword['id_mat']."/id_up/".$tyup['id_up']."'>". "<font color='red'> Delete </font>)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                        } 
@@ -174,12 +176,12 @@
                         if($tyup['lock']=="lock"){ 
                           echo "<a href='".$this->baseUrl()."/materials/pptdown/ppts"."/".$typpt['mat_ppt']."'>".$typpt['mat_ppt']."</a>";
                           
-                          echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/pptdowntest"."/course_id/".$this->course_id."/id_type/".$this->id_type."/".$typpt['mat_word']."'>(Download)</a>";
+                          echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/pptdowntest"."/course_id/".$this->course_id."/id_type/".$this->id_type."/".$typpt['mat_word']."'>(Download)</a>&nbsp;";
                          }else{
-                          echo "<a href='#'>".$typpt['mat_ppt']."</a>";
+                          echo "<a href='#'>".$typpt['mat_ppt']."</a>&nbsp;&nbsp;&nbsp;";
                          } 
                       if($this->admin=="admin" ){ 
-                        echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/editpptpdfword/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$typpt['id_mat']."'>( Update</a>";
+                        echo "<a href='".$this->baseUrl()."/materials/editpptpdfword/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$typpt['id_mat']."'>( Update</a>";
 
                         echo "&nbsp;&nbsp;<a href='".$this->baseUrl()."/materials/delete/course_id/".$this->course_id."/id_type/".$this->id_type."/id_mat/".$typpt['id_mat']."/id_up/".$tyup['id_up']."'>"
                               . "<font color='red'> Delete )</font></a>&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -201,7 +203,7 @@
 </div>
 <tr>
 <td >
-  <font color="red" size="5">Total Upload/Download</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <br/><br/><label style="font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color:rgb(40, 110, 10);">Total Upload/Download</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </td>
 <td>
 
@@ -209,7 +211,7 @@
  echo "<div class='totalupload'>";
   $totalupload=$upimage+$upvideo+$uppdf+$upword+$upppt;
   echo "</div>";
-echo "<br/><br/><lable class='nnumdown'>".$totalupload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/up.png'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->totaldownload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/><br/>";
+echo "<br/><br/><label style='font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color:rgb(40, 110, 10);'class='nnumdown'>".$totalupload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/up.png'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<lable>".$this->totaldownload."</lable><img  width='30' height='30' src='".$this->baseUrl()."/images/down.png'/><br/>";
 ?>
 </div>
 </td>

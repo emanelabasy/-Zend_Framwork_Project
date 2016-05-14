@@ -30,7 +30,7 @@
                     echo '<div class="grid1_of_4" style="margin-right:10px; margin-left: -3px; padding:15px;">';
                     echo "<div class='content_box' style='width: 250px;height: 350px;'>";
 
-                    echo "<img style='width: 250px;height: 150px;' src='".$this->baseUrl()."/images/courses/".$course['cours_image']."' class='img-responsive' alt=''></a>";
+                    echo "<img style='width: 250px;height: 200px;' src='".$this->baseUrl()."/images/courses/".$course['cours_image']."' class='img-responsive' alt=''></a>";
 
 
                     echo '<h4><a href='.$this->baseUrl()."/course/single/course_id/".$course['id_cours'].">".$course['course'].'</a></h4>';
@@ -39,9 +39,9 @@
 
                     echo '<div class="item_add"><span class="item_price"><a href ='.$this->baseUrl()."/course/single/course_id/".$course['id_cours'].'>Read More</a></span></div>';
 
-                    if($this->type == 1){
-                      echo "<a style='margin-top: 15px;' class='btn btn-info' href='".$this->baseUrl()."/course/edit/id_cours/".$course['id_cours']."'> Edit </a> &nbsp<a style='margin-top: 15px;' class='btn btn-danger' href='".$this->baseUrl()."/course/delete/id_cours/".$course['id_cours']."'> Delete </a> ";
-                    }
+                    // if($this->type == 1){
+                    //   echo "<a style='margin-top: 15px;' class='btn btn-info' href='".$this->baseUrl()."/course/edit/id_cours/".$course['id_cours']."'> Edit </a> &nbsp<a style='margin-top: 15px;' class='btn btn-danger' href='".$this->baseUrl()."/course/delete/id_cours/".$course['id_cours']."'> Delete </a> ";
+                    // }
 
                     echo '</div>';
                     echo ' </div>';

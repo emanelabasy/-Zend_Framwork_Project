@@ -50,7 +50,7 @@
     margin-right:400px;
 }
 .nnumdown{
- margin-left: 672px;
+ margin-left: 540px;
 
 }
 .fpwivmessag{
@@ -65,4 +65,34 @@
     font-weight: bold;
     size: 100px;
 
+}
+
+
+.allcontain{
+    background-color:rgb(204, 215, 78);
+    width: 1000px;
+    border-radius:30px;
+    position: absolute;
+    top:830px;
+
+}
+.typemat{
+    background-color: rgb(204, 215, 78);
+    margin-left: 10px;
+    /* margin-top:50px; */
+    width: 300px;
+    padding:60px 0px 60px 20px;
+    border-radius:30px;
+    /* position: absolute; */
+}
+.typeup{
+    background-color: rgb(209, 219, 97);
+    /* margin-left: 10px; */
+    width: 690px;
+    padding:10px;
+    border-radius:30px;
+    
+}
+.totalupload{
+    /* position: absolute; */
 }

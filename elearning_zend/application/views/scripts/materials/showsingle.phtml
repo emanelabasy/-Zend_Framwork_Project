@@ -14,6 +14,24 @@
 
 ?>
 
+<h3><?php
+$obj=new Application_Model_DbTable_Users();
+foreach ($this->comments as $comment){
+  $id=$comment['id_user'];
+  $user=$obj->getUserById($id);
+  $userid=$user[0]['id_user'];
+  echo "<h1>".($user[0]['username'])." ****  (".($user[0]['signature']).")</h1>";
+ 
+
+  echo'<br/>'.($comment['contain_comt']);
+
+  if ($userid==$this->user_id) {
+    echo "<a href='".$this->baseUrl()."/materials/editcomment/course_id/".$comment['id_cours']."/id_type/".$this->id_type."/id_mat/".$comment['id_mat']."/id_comt/".$comment['id_comt']."'>Edit </a><a href='".$this->baseUrl()."/comments/delete/course_id/".$comment['id_cours']."/id_type/".$this->id_type."/id_mat/".$comment['id_mat']."/id_comt/".$comment['id_comt']."'> Delete </a> <br /> <br/> <br/> <br/>'";
+    
+  }
+  }
+?>
+</h3>
 <h1>Add Comment</h1>
 
     <?php 

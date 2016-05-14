@@ -277,31 +277,40 @@ class MaterialsController extends Zend_Controller_Action
             $identity = $auth->getIdentity(); 
             $user_id = $identity->id_user;
             $admin_user  = $this->user->getUserById($user_id);
-            // var_dump($admin_user[0]['type']);die;
+            
             if($admin_user[0]['type'] == '1'){
                 $this->view->admin = "admin";
               } 
            $ids = $this->getRequest()->getParams();
             $id_type=$ids['id_type'];
             $course_id=$ids['course_id'];
-    //            $id_up=$ids['id_up'];
             $id_mat=$ids['id_mat'];
             $this->view->id_type=$id_type;
             $this->view->course_id=$course_id;
             $this->view->id_mat=$id_mat;
-            $this->view-> showmaterial= $this->model->getMaterialById($id_mat);
+            $this->view->user_id=$user_id;
+            $this->view->showmaterial= $this->model->getMaterialById($id_mat);
 
-            // $obj=new Application_Model_DbTable_Comments();
+            $obj=new Application_Model_DbTable_Comments();
+            $comment=$obj->getCommentByMaterialId($id_mat);
+            $this->view->comments=$comment;
+  
+            $this->view->usercomments=$obj->getCommentOfUser($id_mat,$user_id);
             $form = new Application_Form_Addcomment();
-            // $form->populate($user[0]);
-            //     if($this->getRequest()->isPost()){
-            //         if($form->isValid($this->getRequest()->getParams())){
-            //         $data = $form->getValues();
-            //         $this->model->updateuser($data,$id);
-            //         $this->redirect("users/profile");
-            //         }
-            //         $this->redirect('materials/single/course_id/'.$course_id.'/id_type/'.$id_type.'/id_mat/'.$id_mat);
-            // }
+            if($this->getRequest()->isPost()){
+                if($form->isValid($this->getRequest()->getParams())){
+                $data = $form->getValues();
+               
+                array_push($data, $user_id);
+                array_push($data, $id_mat);
+                if ($obj->addComment($data))
+                $this->redirect('materials/showsingle/course_id/'.$course_id.'/id_type/'.$id_type.'/id_mat/'.$id_mat);
+
+                
+                }
+
+            }
+        
             $this->view->form = $form;
         }else{
             $this->redirect("users/login");
@@ -322,19 +331,37 @@ class MaterialsController extends Zend_Controller_Action
            $ids = $this->getRequest()->getParams();
             $id_type=$ids['id_type'];
             $course_id=$ids['course_id'];
-    //            $id_up=$ids['id_up'];
+            $this->view->user_id=$user_id;
             $id_mat=$ids['id_mat'];
             $this->view->id_type=$id_type;
             $this->view->course_id=$course_id;
             $this->view->id_mat=$id_mat;
-            $this->view-> showmaterial= $this->model->getMaterialById($id_mat);
+            $this->view->showmaterial= $this->model->getMaterialById($id_mat);
 
+             $obj=new Application_Model_DbTable_Comments();
+            $comment=$obj->getCommentByMaterialId($id_mat);
+            $this->view->comments=$comment;
+  
+            $this->view->usercomments=$obj->getCommentOfUser($id_mat,$user_id);
             $form = new Application_Form_Addcomment();
+            if($this->getRequest()->isPost()){
+                if($form->isValid($this->getRequest()->getParams())){
+                $data = $form->getValues();
+               
+                array_push($data, $user_id);
+                array_push($data, $id_mat);
+                if ($obj->addComment($data))
+                $this->redirect('materials/showvideo/course_id/'.$course_id.'/id_type/'.$id_type.'/id_mat/'.$id_mat);
+
+                
+                }
+
+            }
         
             $this->view->form = $form;
         }else{
             $this->redirect("users/login");
-        }    
+        }   
     }
     
     public function downloadimageAction()
@@ -534,5 +561,67 @@ class MaterialsController extends Zend_Controller_Action
          }
         $this->redirect('materials/single/course_id/'.$course_id.'/id_type/'.$id_type);
     }
+
+
+
+    public function editcommentAction(){
+        $ids= $this->getRequest()->getParams();
+        $id_comt=$ids['id_comt'];
+        $id_mat=$ids['id_mat'];
+        $id_type=$ids['id_type'];
+        $course_id=$ids['course_id'];
+        $this->view->showmaterial= $this->model->getMaterialById($id_mat);
+        $obj=new Application_Model_DbTable_Comments();
+        $comment=$obj->getCommentByMaterialId($id_mat);
+            $this->view->comments=$comment;
+
+            $form = new Application_Form_Addcomment();
+            $com=$obj->getCommentById($id_comt);
+            $form->populate($com[0]);
+            if($this->getRequest()->isPost()){
+                if($form->isValid($this->getRequest()->getParams())){
+                $data= $form->getValues();
+                if ($obj->updateComment($data,$id_comt))
+
+                $this->redirect('materials/showsingle/course_id/'.$course_id.'/id_type/'.$id_type.'/id_mat/'.$id_mat);
+}
+            }
+        
+            $this->view->form = $form;  
+           $this->render('showsingle');      
+      /*  $this->model->updateComment($id_comt=$id);*/
+
+
+    }
     
+
+    public function editcommentvideoAction(){
+        $ids= $this->getRequest()->getParams();
+        $id_comt=$ids['id_comt'];
+        $id_mat=$ids['id_mat'];
+        $id_type=$ids['id_type'];
+        $course_id=$ids['course_id'];
+        $this->view->showmaterial= $this->model->getMaterialById($id_mat);
+        $obj=new Application_Model_DbTable_Comments();
+        $comment=$obj->getCommentByMaterialId($id_mat);
+            $this->view->comments=$comment;
+
+            $form = new Application_Form_Addcomment();
+            $com=$obj->getCommentById($id_comt);
+            $form->populate($com[0]);
+            if($this->getRequest()->isPost()){
+                if($form->isValid($this->getRequest()->getParams())){
+                $data= $form->getValues();
+                if ($obj->updateComment($data,$id_comt))
+
+                $this->redirect('materials/showvideo/course_id/'.$course_id.'/id_type/'.$id_type.'/id_mat/'.$id_mat);
+}
+            }
+        
+            $this->view->form = $form;  
+           $this->render('showvideo');      
+      /*  $this->model->updateComment($id_comt=$id);*/
+
+
+    }
 }
