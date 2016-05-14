@@ -59,4 +59,8 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 		return $course->num_view;
 	}
 
+	function deleteCoursesByCategoryId($id){
+		return $this->delete('id_cato='.$id);
+	}
+
 }

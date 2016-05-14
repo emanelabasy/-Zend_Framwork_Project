@@ -74,6 +74,10 @@ class Application_Model_DbTable_Materials extends Zend_Db_Table_Abstract
 		return $row->save();
 	}
 
-
+	// delete all materials related to course --> shrouk
+	function getMaterialsByCourseId($id){
+		return $this->delete('id_cours='.$id);
+	}
+	
 }
 

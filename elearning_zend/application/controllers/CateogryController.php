@@ -87,7 +87,10 @@ class CateogryController extends Zend_Controller_Action
             $identity = $auth->getIdentity(); 
             $user_id = $identity->id_user; 
             $id = $this->getRequest()->getParam('id');
+            $courses = new Application_Model_DbTable_Course();
         if ($this->Category->deleteCategories($id))
+            $courses->deleteCoursesByCategoryId($id);
+            
             $this->redirect('cateogry/index');
     }else{
         

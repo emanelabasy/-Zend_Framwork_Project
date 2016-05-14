@@ -17,6 +17,8 @@ class CourseController extends Zend_Controller_Action
         if($auth->hasIdentity()){
             $identity = $auth->getIdentity(); 
             $user_id = $identity->id_user;
+            $type = $identity->type;
+            $this->view->type = $type;
 
             $cat_id = $this->getRequest()->getParam('id');
             $category = new Application_Model_DbTable_Cateogry();
@@ -94,7 +96,10 @@ class CourseController extends Zend_Controller_Action
         
 
                 $id = $this->getRequest()->getParam('id_cours');
+
+                $materials = new Application_Model_DbTable_Materials();
                 if($this->model->deleteCourse($id))
+                    $materials->getMaterialsByCourseId($id);
                     $this->redirect('/cateogry/index');
              }else{
                 $this->redirect("/cateogry/index");
