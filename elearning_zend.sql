@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 13, 2016 at 06:30 PM
+-- Generation Time: May 14, 2016 at 05:38 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.3
 
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id_cato`, `category`, `image`, `desc`, `num_view`) VALUES
-(2, 'phppppppp', '1238780_534542493301362_1397821530_n.jpg', 'Programming Langauage', 0),
-(4, 'Java', 'cash_on_delivery_1.jpg', 'programming Language', 0),
+(2, 'phppppppp', '1238780_534542493301362_1397821530_n.jpg', 'Programming Langauage', 6),
+(4, 'Java', 'cash_on_delivery_1.jpg', 'programming Language', 4),
 (5, 'Design', 'cash_on_delivery_1.jpg', 'web and Desktop', 0),
 (7, 'shrouk', '11048708_541149749359035_6977789512309035756_n.jpg', 'ba7bk', 0),
 (9, 'yasimn', '2013-04-11_00056.jpg', 'toz', 0),
@@ -83,13 +83,13 @@ CREATE TABLE IF NOT EXISTS `courses` (
 --
 
 INSERT INTO `courses` (`id_cours`, `course`, `id_cato`, `id_user`, `cours_image`, `cours_desc`, `num_view`) VALUES
-(1, 'Java', 2, 1, '2.jpg', 'Java SE', 1),
-(2, 'PHP', 2, 1, '1.jpg', 'Zend Framework', 10),
+(1, 'Java', 2, 1, '2.jpg', 'Java SE', 331),
+(2, 'PHP', 2, 1, '1.jpg', 'Zend Framework', 88),
 (3, 'Python', 2, 1, '3.jpg', 'Python Language', 0),
-(4, 'Ruby', 2, 1, 'images.jpeg', 'Ruby on rails', 0),
-(5, 'test admin', 2, 1, '4.jpg', 'test adding course from admin panel ', 0),
+(4, 'Ruby', 2, 1, 'images.jpeg', 'Ruby on rails', 3),
+(5, 'test admin', 2, 1, '4.jpg', 'test adding course from admin panel ', 13),
 (6, 'emanphp', 12, 18, '10376260_10153403732428647_2824273180537428405_n.png', 'uitieuthoie44 hoi5hy5iy hoiehyp', 0),
-(7, 'oop', 4, 18, '10384699_858913177471612_7681537882074516556_n.jpg', 'hjekt hiwhtjkwe hhoihtoi', 0),
+(7, 'oop', 4, 18, '10384699_858913177471612_7681537882074516556_n.jpg', 'hjekt hiwhtjkwe hhoihtoi', 7),
 (8, 'rrrr', 4, 18, '10384699_858913177471612_7681537882074516556_n.jpg', 'jyj5oyjkl tjtbjk gbbert', 0),
 (9, 'eeeeeee', 5, 18, '4.jpg', 'eeeeeeeeeee eeeeeeeeeeeeeeeeeee', 0);
 
@@ -107,8 +107,6 @@ CREATE TABLE IF NOT EXISTS `materials` (
   `mat_word` varchar(255) DEFAULT NULL,
   `mat_video` varchar(255) DEFAULT NULL,
   `mat_ppt` varchar(255) DEFAULT NULL,
-  `state` tinyint(1) NOT NULL,
-  `lock` tinyint(1) NOT NULL,
   `no_users` int(100) DEFAULT NULL,
   `id_user` int(11) NOT NULL,
   `id_cours` int(11) NOT NULL,
@@ -117,25 +115,27 @@ CREATE TABLE IF NOT EXISTS `materials` (
   `desc_ppt` varchar(255) DEFAULT NULL,
   `desc_word` varchar(255) DEFAULT NULL,
   `desc_video` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `materials`
 --
 
-INSERT INTO `materials` (`id_mat`, `id_type`, `mat_pdf`, `mat_image`, `mat_word`, `mat_video`, `mat_ppt`, `state`, `lock`, `no_users`, `id_user`, `id_cours`, `desc_image`, `desc_pdf`, `desc_ppt`, `desc_word`, `desc_video`) VALUES
-(1, 1, NULL, '1236215_423998537709253_1886694365_n.jpg', NULL, NULL, NULL, 1, 0, 0, 18, 1, 'desc imagedesc imagedesc imagedesc imagedesc imagedesc imagedesc image', NULL, NULL, NULL, NULL),
-(4, 2, NULL, '557494_423997801042660_1762411113_n.jpg', NULL, NULL, NULL, 1, 0, 0, 18, 1, 'hjgjh jhh oihoij kl ', '', '', '', ''),
-(5, 1, NULL, '1209304_569680859770086_1411301702_n.jpg', NULL, NULL, NULL, 1, 0, 0, 18, 1, 'good osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood os', '', '', '', ''),
-(6, 1, NULL, '10376260_10153403732428647_2824273180537428405_n.png', NULL, NULL, NULL, 1, 0, 0, 18, 1, 'os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os ', '', '', '', ''),
-(7, 1, NULL, '11091395_1049261875097612_4782535268933226312_n.jpg', NULL, NULL, NULL, 1, 0, 0, 18, 2, 'test  addmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterial', '', '', '', ''),
-(8, 2, 'OWASP Top 10 - 2013.pdf', NULL, NULL, NULL, NULL, 1, 0, 0, 18, 1, '', 'https://github.com/emyeman/-Zend_Framwork_Project.githttps://github.com/emyeman/-Zend_Framwork_Project.githttps://github.com/emyeman/-Zend_Framwork_Project.githttps://github.com/emyeman/-Zend_Framwork_Project.githttps://github.com/emyeman/-Zend_Framwork_P', '', '', ''),
-(9, 2, 'OWASP Top 10 - 2013.pdf', NULL, NULL, NULL, NULL, 1, 0, 0, 18, 1, '', 'hthie hiuht4 h4oh  ', '', '', ''),
-(10, 1, NULL, NULL, NULL, 'aa.MP3', NULL, 1, 0, 0, 18, 1, '', '', '', '', 'MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3v'),
-(11, 3, NULL, NULL, NULL, NULL, 'emanppt.pptx', 1, 0, 0, 18, 1, '', '', 'text ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext pp', '', ''),
-(12, 3, NULL, NULL, 'shellscript.docx', NULL, NULL, 1, 0, 0, 18, 1, '', '', '', 'test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test ', ''),
-(13, 1, NULL, '1238780_534542493301362_1397821530_n.jpg', NULL, NULL, NULL, 1, 0, 0, 18, 4, 'test testjsdjhw', '', '', '', ''),
-(15, 1, NULL, '1238780_534542493301362_1397821530_n.jpg', NULL, NULL, NULL, 1, 0, 0, 18, 1, 'tesyru gkrejg bgjkre', '', '', '', '');
+INSERT INTO `materials` (`id_mat`, `id_type`, `mat_pdf`, `mat_image`, `mat_word`, `mat_video`, `mat_ppt`, `no_users`, `id_user`, `id_cours`, `desc_image`, `desc_pdf`, `desc_ppt`, `desc_word`, `desc_video`) VALUES
+(1, 1, NULL, '1236215_423998537709253_1886694365_n.jpg', NULL, NULL, NULL, 0, 18, 1, 'desc imagedesc imagedesc imagedesc imagedesc imagedesc imagedesc image', NULL, NULL, NULL, NULL),
+(4, 2, NULL, '557494_423997801042660_1762411113_n.jpg', NULL, NULL, NULL, 0, 18, 1, 'hjgjh jhh oihoij kl ', '', '', '', ''),
+(5, 1, NULL, '1209304_569680859770086_1411301702_n.jpg', NULL, NULL, NULL, 0, 18, 1, 'good osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood osgood os', '', '', '', ''),
+(6, 1, NULL, '10376260_10153403732428647_2824273180537428405_n.png', NULL, NULL, NULL, 0, 18, 1, 'os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os os ', '', '', '', ''),
+(7, 1, NULL, '11091395_1049261875097612_4782535268933226312_n.jpg', NULL, NULL, NULL, 0, 18, 2, 'test  addmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterialaddmaterial', '', '', '', ''),
+(8, 2, 'OWASP Top 10 - 2013.pdf', NULL, NULL, NULL, NULL, 0, 18, 1, '', 'https://github.com/emyeman/-Zend_Framwork_Project.githttps://github.com/emyeman/-Zend_Framwork_Project.githttps://github.com/emyeman/-Zend_Framwork_Project.githttps://github.com/emyeman/-Zend_Framwork_Project.githttps://github.com/emyeman/-Zend_Framwork_P', '', '', ''),
+(9, 2, 'OWASP Top 10 - 2013.pdf', NULL, NULL, NULL, NULL, 0, 18, 1, '', 'hthie hiuht4 h4oh  ', '', '', ''),
+(10, 1, NULL, NULL, NULL, '11.MP3', NULL, 0, 18, 1, '', '', '', '', 'MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3MP3v'),
+(11, 3, NULL, NULL, NULL, NULL, 'emanppt.pptx', 0, 18, 1, '', '', 'text ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext ppttext pp', '', ''),
+(12, 3, NULL, NULL, 'shellscript.docx', NULL, NULL, 0, 18, 1, '', '', '', 'test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test word test ', ''),
+(13, 1, NULL, '1238780_534542493301362_1397821530_n.jpg', NULL, NULL, NULL, 0, 18, 4, 'test testjsdjhw', '', '', '', ''),
+(15, 1, NULL, '1238780_534542493301362_1397821530_n.jpg', NULL, NULL, NULL, 0, 18, 1, 'tesyru gkrejg bgjkre', '', '', '', ''),
+(17, 1, NULL, NULL, NULL, NULL, 'security.pptx', 0, 18, 1, '', '', '', '', ''),
+(18, 1, NULL, NULL, NULL, '11.MP3', 'emanppt.pptx', 0, 18, 1, 'hrtui yjlk4 ijoyije', '', 'tureyt rhierh oeroiyh', '', 'erhkj nerng hnoienl');
 
 -- --------------------------------------------------------
 
@@ -190,35 +190,39 @@ CREATE TABLE IF NOT EXISTS `typeuploads` (
   `contain_upload` varchar(255) NOT NULL,
   `id_type` int(11) NOT NULL,
   `no_download` int(50) DEFAULT NULL,
-  `id_cours` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+  `id_cours` int(11) NOT NULL,
+  `show` varchar(30) NOT NULL,
+  `lock` varchar(30) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `typeuploads`
 --
 
-INSERT INTO `typeuploads` (`id_up`, `contain_upload`, `id_type`, `no_download`, `id_cours`) VALUES
-(2, 'Videos', 1, 0, 1),
-(3, 'Word', 2, 0, 2),
-(4, 'Videos', 2, 1, 2),
-(6, 'Image', 1, 8, 1),
-(7, 'PPT', 1, 0, 4),
-(9, 'PDF', 1, 0, 5),
-(10, 'PDF', 2, 0, 6),
-(11, 'Video', 3, 0, 3),
-(12, 'PPT', 3, 0, 1),
-(13, 'Image', 3, 0, 5),
-(14, 'Image', 2, 0, 6),
-(15, 'PDF', 3, 0, 1),
-(16, 'Image', 2, 0, 4),
-(17, 'Image', 2, 0, 2),
-(18, 'Image', 2, 1, 1),
-(19, 'Image', 4, 0, 2),
-(20, 'Image', 1, 2, 2),
-(21, 'PDF', 2, 0, 1),
-(22, 'PPt', 1, 0, 1),
-(23, 'Word', 3, 0, 1),
-(24, 'PDF', 1, 0, 2);
+INSERT INTO `typeuploads` (`id_up`, `contain_upload`, `id_type`, `no_download`, `id_cours`, `show`, `lock`) VALUES
+(2, 'Video', 1, 3, 1, 'hidden', 'lock'),
+(3, 'Word', 2, 0, 2, 'hidden', 'unlock'),
+(4, 'Videos', 2, 1, 2, 'hidden', 'unlock'),
+(6, 'Image', 1, 8, 1, 'hidden', 'lock'),
+(7, 'PPT', 1, 0, 4, 'show', 'unlock'),
+(9, 'PDF', 1, 0, 5, 'show', 'lock'),
+(10, 'PDF', 2, 0, 6, 'show', 'unlock'),
+(11, 'Video', 3, 0, 3, 'show', 'unlock'),
+(12, 'PPT', 3, 1, 1, 'hidden', 'unlock'),
+(13, 'Image', 3, 0, 5, 'show', 'unlock'),
+(14, 'Image', 2, 0, 6, 'show', 'unlock'),
+(15, 'PDF', 3, 0, 1, 'hidden', 'unlock'),
+(16, 'Image', 2, 0, 4, 'show', 'unlock'),
+(17, 'Image', 2, 0, 2, 'show', 'unlock'),
+(18, 'Image', 2, 2, 1, 'hidden', 'unlock'),
+(19, 'Image', 4, 0, 2, 'show', 'unlock'),
+(20, 'Image', 1, 2, 2, 'show', 'unlock'),
+(21, 'PDF', 2, 6, 1, 'hidden', 'lock'),
+(22, 'PPT', 1, 2, 1, 'hidden', 'lock'),
+(23, 'Word', 3, 1, 1, 'hidden', 'unlock'),
+(24, 'PDF', 1, 0, 2, 'show', 'unlock'),
+(25, 'Word', 1, 0, 1, 'hidden', 'unlock'),
+(26, 'Video', 2, 0, 1, 'hidden', 'unlock');
 
 -- --------------------------------------------------------
 
@@ -237,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `country` varchar(255) NOT NULL,
   `signature` varchar(255) NOT NULL,
   `username` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -257,7 +261,8 @@ INSERT INTO `users` (`id_user`, `email`, `password`, `type`, `ban_user`, `image`
 (15, 'kjdshfj@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 1, 'images (7).jpg', 'male', 'egy', 'ghgjgj', 'ali'),
 (16, 's@yahoo.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 1, '1800291.jpg', 'male', 'egy', 'jdkh', 'qw'),
 (17, 'basma@yahoo.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 1, 'Water-Wave-Sports-690x388.jpg', 'male', 'egy', 'xcvb', 'bn'),
-(18, 'egad86@yahoo.com', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, '557494_423997801042660_1762411113_n.jpg', 'female', 'egy', 'emyyyyyyyyyyyy', 'eman');
+(18, 'egad86@yahoo.com', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, '557494_423997801042660_1762411113_n.jpg', 'female', 'egy', 'emyyyyyyyyyyyy', 'eman'),
+(19, 'aya@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 0, 1, '9951_10152507429373647_1843990526_n.jpg', 'female', 'egy', 'yooyo', 'aya');
 
 --
 -- Indexes for dumped tables
@@ -348,7 +353,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
-  MODIFY `id_mat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id_mat` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `requests`
 --
@@ -363,12 +368,12 @@ ALTER TABLE `typematerials`
 -- AUTO_INCREMENT for table `typeuploads`
 --
 ALTER TABLE `typeuploads`
-  MODIFY `id_up` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id_up` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
