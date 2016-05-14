@@ -129,5 +129,27 @@ class CateogryController extends Zend_Controller_Action
          $this->redirect("users/login");
     }
   }
+
+  function listcatAction(){
+
+    $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $type = $identity->type;
+            // $this->view->type = $type;
+
+            if($type == 1){
+                $this->view->cateogries = $this->Category->listCategories();
+                $layout = $this->_helper->layout();
+                $layout->setLayout('admin-layout');
+            }
+            else{
+                $this->redirect('cateogry/index');
+            }
+        }
+
+  }
+
 }
 

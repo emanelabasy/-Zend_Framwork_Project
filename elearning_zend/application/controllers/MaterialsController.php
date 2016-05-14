@@ -92,7 +92,7 @@ class MaterialsController extends Zend_Controller_Action
 
     
     public function singleAction(){
-        //  add session check ---> by shrouk
+        //  add session check --- by shrouk
         $auth = Zend_Auth::getInstance();
         if($auth->hasIdentity()){
             $identity = $auth->getIdentity(); 

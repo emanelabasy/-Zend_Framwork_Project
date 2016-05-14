@@ -21,6 +21,8 @@ class CourseController extends Zend_Controller_Action
             $cat_id = $this->getRequest()->getParam('id');
             $category = new Application_Model_DbTable_Cateogry();
             $this->view->cateogry = $category->getCategoriesById($cat_id);
+            $num = $category->addviewCategories($cat_id);
+            $this->view->viewcato = $category->showviewCategories($cat_id);
             // var_dump($this->cateogry);
             $this->view->courses = $this->model->listCourses($cat_id);
         }else{
@@ -146,6 +148,32 @@ class CourseController extends Zend_Controller_Action
         }
     }
 
+    function listcourseAction(){
+
+        $auth = Zend_Auth::getInstance();
+        if($auth->hasIdentity()){
+            $identity = $auth->getIdentity(); 
+            $user_id = $identity->id_user;
+            $type = $identity->type;
+            // $this->view->type = $type;
+
+            if($type == 1){
+                $cat_id = $this->getRequest()->getParam('id');
+                $category = new Application_Model_DbTable_Cateogry();
+                $this->view->cateogry = $category->getCategoriesById($cat_id);
+                // var_dump($this->cateogry);
+                $this->view->courses = $this->model->listCourses($cat_id);
+                
+                $layout = $this->_helper->layout();
+                $layout->setLayout('admin-layout');
+
+            }else{
+                $this->redirect('cateogry/index');
+            }
+        }
+    }
+
+
     // function twitterAction(){
 
     //     //share Course on twitter //
@@ -191,7 +219,7 @@ class CourseController extends Zend_Controller_Action
         $email->ssl = 'TLS';
         $email->smtp_auth = "true";
         $email->username = "shrouk.passiony@gmail.com";
-        $email->password = "shemo1012";
+        $email->password = "";
         $email->smtpport = "465";
         $email->secure = "SSL";
         $email->ack = "false";
@@ -206,8 +234,7 @@ class CourseController extends Zend_Controller_Action
 
     }
 
-     public function viewsAction()
-    {
+    public function viewsAction(){
         //Get a single Course//
         $id = $this->getRequest()->getParam('course_id');
         $num_views = $this->model->numViewsCourse($id);

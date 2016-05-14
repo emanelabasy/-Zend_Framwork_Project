@@ -3,21 +3,17 @@
 
 <div margin='auto' >
 <?php
+
+    echo "<h1 style='font-family: initial;font-style: italic;font-size: 50px;margin-bottom: 30px;text-align: left;color: rgb(177, 46, 49);'>".$this->cateogry[0]['category'].'</h1><br />';
+
+     echo "<h1 style='margin-top: -50px;font-style: italic;color: rgb(177, 46, 49);'> Viewed By : ".$this->viewcato."</h1>";
+    echo "<br /><label style='font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color: #66CCCC;'> Category Image: </label><h3>";
+    echo "<br /><img style='margin: 20px; width: 850px;height: 300px;' src='".$this->baseUrl()."/images/category/".$this->cateogry[0]['image']."'/>";
     
-    echo "<h4><a href='".$this->baseUrl()."/course/mail'>Send mail</a></h4>";
-
-
-    echo "<br /><label> Category Name : </label><h3>";
-    echo $this->cateogry[0]['category']."<br>";
-    echo "<br /><label> Category Image : </label><h3>";
-    echo "<img src='".$this->baseUrl()."/images/category/".$this->cateogry[0]['image']."'/><br>";
-
-    echo "<br /><label> Category Description : </label><h3>";
-    echo $this->cateogry[0]['desc']."<br>";
-
-    // var_dump($this->cateogry);
+    echo "<br /><label style='font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color: #66CCCC;'> Category Description : </label><h3 style='margin: 20px;font-size: 20px;'>".$this->cateogry[0]['desc'].'</h3><br /></div><br>';
     
 ?>
+
 </div>
 
 
@@ -34,10 +30,10 @@
             <?php
                 foreach ($this->courses as $course){
 
-                    echo '<div class="grid1_of_4">';
-                    echo "<div class='content_box'>";
+                    echo '<div class="grid1_of_4" style="margin-right:10px; margin-left: -3px; padding:15px;">';
+                    echo "<div class='content_box' style='width: 250px;height: 250px;'>";
 
-                    echo "<img src='".$this->baseUrl()."/images/courses/".$course['cours_image']."' class='img-responsive' alt=''></a>";
+                    echo "<img style='width: 250px;height: 150px;' src='".$this->baseUrl()."/images/courses/".$course['cours_image']."' class='img-responsive' alt=''></a>";
 
 
                     echo '<h4><a href='.$this->baseUrl()."/course/single/course_id/".$course['id_cours'].">".$course['course'].'</a></h4>';
@@ -48,15 +44,13 @@
 
                     echo '</div>';
                     echo ' </div>';
-                    echo '</div>';
+                    // echo '</div>';
                 }
             ?>
             <div class="clearfix"></div>
         </div>
 	</div>
- <!--    </div>
-</div>
-		 -->	
+ 	
 
 
 

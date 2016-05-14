@@ -48,11 +48,23 @@ class Application_Model_DbTable_Cateogry extends Zend_Db_Table_Abstract
         return $row->save();
 	}
         
-//        function viewCategories(){
-//            
-//            $row->createRow();
-////            $row->;
-//        }
+        function showviewCategories($id){
+            
+            $view= $this->fetchRow($this->select()->where('id_cato='.$id));
+            return $view->num_view;
+            
+        }
+        
+        function addviewCategories($id){
+            
+           $view= $this->fetchRow($this->select()->where('id_cato='.$id));
+           
+           $view->num_view +=1;
+           
+                   
+           return $view->save(); 
+            
+        }
         
 
 }

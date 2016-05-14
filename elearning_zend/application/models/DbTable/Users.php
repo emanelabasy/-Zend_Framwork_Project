@@ -16,6 +16,14 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 
 	function updateUser($userInfo,$id_user){
 		$userInfo['password']=md5($userInfo['password']);
+		$user = $this->getUserById($id_user);
+
+		if($userInfo['password'] == md5("")){
+			$userInfo['password'] = $user[0]['password'];
+		}
+		if($userInfo['image'] == ""){
+			$userInfo['image'] = $user[0]['image'];
+		}
 		return $this->update($userInfo,'id_user='.$id_user);
 	}
 

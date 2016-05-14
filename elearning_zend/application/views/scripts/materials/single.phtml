@@ -1,9 +1,6 @@
+
 <?php
 
-
-
-   // echo "<br><br><br><br>";
-    
     echo "<h1 style='font-family: initial;font-style: italic;font-size: 50px;margin-bottom: 30px;text-align: left;color: rgb(177, 46, 49);'>".$this->course[0]['course'].'</h1><br />';
 
     if($this->type == 1){
@@ -12,7 +9,7 @@
 
     echo "<h1 style='margin-top: -50px;font-style: italic;color: rgb(177, 46, 49);'> Viewed By : ".$this->course_num_views."</h1>";
     echo "<br /><label style='font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color: #66CCCC;'> Course Image: </label><h3>";
-    echo "<br /><img style='margin: 20px;' src='".$this->baseUrl()."/images/courses/".$this->course[0]['cours_image']."'/>";
+    echo "<br /><img style='margin: 20px; width: 850px;height: 300px;' src='".$this->baseUrl()."/images/courses/".$this->course[0]['cours_image']."'/>";
     
     echo "<br /><label style='font-family: initial;font-style: italic; font-weight: bold;font-size: 20px;color: #66CCCC;'> Course Description : </label><h3 style='margin: 20px;font-size: 20px;'>".$this->course[0]['cours_desc'].'</h3><br /></div><br>';
 
